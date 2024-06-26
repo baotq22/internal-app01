@@ -1,0 +1,119 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.col-input-login {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.form {
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+.redAsterisk {
+  color: red;
+}
+
+.sex {
+  margin-right: 10px;
+}
+
+.btn-container {
+  display: flex;
+}
+
+.action-button {
+  font-weight: 400;
+  color: #fff;
+  background-color: #4e73df;
+  border-color: #4e73df;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10rem;
+  width: 70%;
+}
+
+.dropdownlist {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d1d3e2;
+  border-radius: 10rem;
+}
+
+@media (min-width: 1665px) {
+  .col-input {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1664px) {
+  .col-input {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1216px) {
+  .col-input {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .col-input {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .btn-container {
+    display: block;
+  }
+}
