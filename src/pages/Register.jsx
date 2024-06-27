@@ -15,6 +15,7 @@ function Registers() {
     const [phoneNumber, setPhoneNumber] = useState('')
     const [gender, setGender] = useState('')
     const [brand, setBrand] = useState('')
+    const [model, setModel] = useState('')
 
     const [isError, setIsError] = useState({});
     const [isMatchPwd, setIsMatchPwd] = useState(true)
@@ -50,20 +51,20 @@ function Registers() {
             confirmPassword !== '' &&
             password === confirmPassword &&
             address !== '' &&
-            validateEmail(email) && email !== '' && dob !== '' &&
-            validatePassword(password) === null && gender !== '' && brand !== ''
+            validateEmail(email) && email !== '' && dob !== '' && model !== ''
+        validatePassword(password) === null && gender !== '' && brand !== ''
         setIsDisabled(enabled)
-        
+
         const enabledClear =
             firstName !== '' ||
             lastName !== '' ||
             password !== '' ||
             confirmPassword !== '' ||
-            address !== '' ||
+            address !== '' || model !== '' ||
             email !== '' || dob !== '' ||
             gender !== '' || brand !== ''
         setIsDisabledClear(enabledClear)
-    }, [firstName, lastName, password, confirmPassword, address, email, dob, gender, brand])
+    }, [firstName, lastName, password, confirmPassword, address, email, dob, gender, brand, model])
 
     const errors = {}
     const btnSubmit = (event) => {
@@ -106,6 +107,9 @@ function Registers() {
         if (brand === '') {
             errors.brand = 'This field is required'
         }
+        if (model === '') {
+            errors.brand = 'This field is required'
+        }
         setIsError(errors)
 
         if (Object.keys(errors).length === 0) {
@@ -120,6 +124,7 @@ function Registers() {
                 + "Email: " + email + "\n"
                 + "Gender: " + gender + "\n"
                 + "Brand: " + brand + "\n"
+                + "Model: " + model + "\n"
             )
         }
     }
@@ -134,8 +139,9 @@ function Registers() {
         setAddress('');
         setEmail('');
         setPhoneNumber('');
-        setGender('')
-        setBrand('')
+        setGender('');
+        setBrand('');
+        setModel('');
         setIsError({});
         setIsMatchPwd(true);
     }
@@ -220,6 +226,11 @@ function Registers() {
         const year = String(today.getFullYear());
 
         return `${year}-${month}-${day}`
+    }
+
+    const getModelsByBrand = (brandName) => {
+        const brandModel = getAllFromJson.find((b) => b.name === brandName)
+        return brandModel ? brandModel.model : []
     }
 
     return (
@@ -388,19 +399,36 @@ function Registers() {
                                     </label><br />
                                 </div>
                                 <div className="redAsterisk">&nbsp;{isError.gender && <>{isError.gender}</>}</div>
-                                <div className="form-group">
-                                    <label htmlFor="brand">Brand: <span style={{ color: 'red' }}>*</span></label>
-                                    <select
-                                        className="dropdownlist"
-                                        value={brand}
-                                        onChange={(e) => setBrand(e.target.value)}
-                                    >
-                                        <option value="">---</option>
-                                        {getAllFromJson.map((getAllBrand) => (
-                                            <option value={getAllBrand.name}>{getAllBrand.name}</option>
-                                        ))}
-                                    </select>
-                                    <div className="redAsterisk">&nbsp;{isError.brand && <>{isError.brand}</>}</div>
+                                <div className="form-group row">
+                                    <div className="col-dropdownlist">
+                                        <label htmlFor="brand">Brand: <span style={{ color: 'red' }}>*</span></label>
+                                        <select
+                                            className="dropdownlist"
+                                            value={brand}
+                                            onChange={(e) => setBrand(e.target.value)}
+                                        >
+                                            <option value="">---</option>
+                                            {getAllFromJson.map((getAllBrand) => (
+                                                <option value={getAllBrand.name}>{getAllBrand.name}</option>
+                                            ))}
+                                        </select>
+                                        <div className="redAsterisk">&nbsp;{isError.brand && <>{isError.brand}</>}</div>
+                                    </div>
+                                    <div className="col-dropdownlist">
+                                        <label htmlFor="brand">Model: <span style={{ color: 'red' }}>*</span></label>
+                                        <select
+                                            className="dropdownlist"
+                                            value={model}
+                                            onChange={(e) => setModel(e.target.value)}
+                                            disabled={!brand}
+                                        >
+                                            <option value="">---</option>
+                                            {getModelsByBrand(brand).map((model) => (
+                                                <option value={model.name}>{model.name}</option>
+                                            ))}
+                                        </select>
+                                        <div className="redAsterisk">&nbsp;{isError.model && <>{isError.model}</>}</div>
+                                    </div>
                                 </div>
                                 <div className="btn-container" style={{ marginTop: '30px' }}>
                                     <button type='submit' className={isDisabled ? "action-button" : "action-button-disabled"} disabled={!isDisabled}>Submit</button>
