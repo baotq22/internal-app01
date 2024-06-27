@@ -3,6 +3,12 @@ import '../assets/css/sb-admin-2.min.css'
 import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
 import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
 import getAllFromJson from "../assets/json/brand.json"
+import ReuseableGroup from '../components/reuseableComponents/ReuseableGroup'
+import ReuseableInput from '../components/reuseableComponents/ReuseableInput'
+import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd'
+import ReuseableRadio from '../components/reuseableComponents/ReuseableRadio'
+import ReuseableDropdownlist from '../components/reuseableComponents/ReuseableDropdownlist'
+import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton'
 
 function Registers() {
     const [firstName, setFirstName] = useState('')
@@ -12,7 +18,7 @@ function Registers() {
     const [dob, setDob] = useState('')
     const [address, setAddress] = useState('')
     const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('+84 ')
     const [gender, setGender] = useState('')
     const [brand, setBrand] = useState('')
     const [model, setModel] = useState('')
@@ -144,10 +150,12 @@ function Registers() {
         setModel('');
         setIsError({});
         setIsMatchPwd(true);
+        setIsShowPassword(false);
+        setIsShowCfPwd(false);
     }
 
     const validateFirstName = (e) => {
-        const value = e.target.value;
+        const {value} = e.target
         if (validateName(value) || value === '') {
             setFirstName(value)
             setIsError(prevErrors => ({ ...prevErrors, firstName: null }));
@@ -157,7 +165,7 @@ function Registers() {
     }
 
     const validateLastName = (e) => {
-        const value = e.target.value;
+        const {value} = e.target
         if (validateName(value) || value === '') {
             setLastName(value)
             setIsError(prevErrors => ({ ...prevErrors, lastName: null }));
@@ -167,7 +175,7 @@ function Registers() {
     }
 
     const validateTheEmail = (e) => {
-        const value = e.target.value
+        const {value} = e.target
         setEmail(value);
         if (validateEmail(value) || value === '') {
             setEmail(value);
@@ -178,7 +186,7 @@ function Registers() {
     }
 
     const validateThePwd = (e) => {
-        const value = e.target.value
+        const {value} = e.target
         setPassword(value);
         const pwdError = validatePassword(value)
         if (value || value === '') {
@@ -190,7 +198,7 @@ function Registers() {
     }
 
     const validateTheCfPwd = (e) => {
-        const value = e.target.value
+        const {value} = e.target
         setConfirmPassword(value);
         if (value || value === '') {
             setConfirmPassword(value);
@@ -199,7 +207,7 @@ function Registers() {
     }
 
     const validateTheAddress = (e) => {
-        const value = e.target.value
+        const {value} = e.target
         setAddress(value);
         if (value || value === '') {
             setAddress(value);
@@ -208,7 +216,7 @@ function Registers() {
     }
 
     const validateThePhone = (e) => {
-        const value = e.target.value
+        const {value} = e.target
         setPhoneNumber(value)
         if (validatePhone(value)) {
             setIsError(prevErrors => ({ ...prevErrors, phoneNumber: null }));
@@ -219,7 +227,7 @@ function Registers() {
         }
     }
 
-    const getToday = (e) => {
+    const getToday = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
         const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -243,196 +251,168 @@ function Registers() {
                                 <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <form onSubmit={btnSubmit} onReset={btnClear} id="form" className="user">
-                                <div className="form-group row">
-                                    <div className="col-input mb-3 mb-sm-0">
-                                        <label htmlFor="firstName">First Name: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-user"
-                                            id="firstName"
-                                            placeholder='First Name'
-                                            value={firstName}
-                                            onChange={validateFirstName}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.firstName && <>{isError.firstName}</>}</div>
-                                    </div>
-                                    <div className="col-input mb-3 mb-sm-0">
-                                        <label htmlFor="lastName">Last Name: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-user"
-                                            id="lastName"
-                                            placeholder='Last Name'
-                                            value={lastName}
-                                            onChange={validateLastName}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.lastName && <>{isError.lastName}</>}</div>
-                                    </div>
-                                    <div className="col-input mb-3 mb-sm-0">
-                                        <label htmlFor="pass">Password: <span style={{ color: 'red' }}>*</span></label>
-                                        <img
-                                            src={isShowPassword ? eyeOpen : eyeClose}
-                                            className='pwdAppear'
-                                            value={isShowPassword}
-                                            onClick={() =>
-                                                setIsShowPassword((prev) => !prev)
-                                            }
-                                            style={{ position: 'absolute' }}
-                                        />
-                                        <input
-                                            type={
-                                                isShowPassword ? "text" : "password"
-                                            }
-                                            className="form-control form-control-user"
-                                            id="pass"
-                                            placeholder='Password'
-                                            value={password}
-                                            onChange={validateThePwd}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.password && <>{isError.password}</>}</div>
-                                    </div>
-                                    <div className="col-input">
-                                        <label htmlFor="cfPass">Confirm Password: <span style={{ color: 'red' }}>*</span></label>
-                                        <img
-                                            src={isShowCfPwd ? eyeOpen : eyeClose}
-                                            className='pwdAppear'
-                                            value={isShowCfPwd}
-                                            onClick={() =>
-                                                setIsShowCfPwd((prev) => !prev)
-                                            }
-                                        />
-                                        <input
-                                            type={
-                                                isShowCfPwd ? "text" : "password"
-                                            }
-                                            className="form-control form-control-user"
-                                            id="cfPass"
-                                            placeholder='Confirm Password'
-                                            value={confirmPassword}
-                                            onChange={validateTheCfPwd}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.confirmPassword && <>{isError.confirmPassword}</>}</div>
-                                    </div>
-                                    <div className="col-input">
-                                        <label htmlFor="Dob">D.O.B: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="date"
-                                            className="form-control form-control-user"
-                                            id="Dob"
-                                            value={dob}
-                                            onChange={e => setDob(e.target.value)}
-                                            max={getToday()}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.dob && <>{isError.dob}</>}</div>
-                                    </div>
-                                    <div className="col-input">
-                                        <label htmlFor="address">Address: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-user"
-                                            id="address"
-                                            placeholder='Address'
-                                            value={address}
-                                            onChange={validateTheAddress}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.address && <>{isError.address}</>}</div>
-                                    </div>
-                                    <div className="col-input">
-                                        <label htmlFor="email">Email: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="email"
-                                            className="form-control form-control-user"
-                                            id="email"
-                                            placeholder='Email'
-                                            value={email}
-                                            onChange={validateTheEmail}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.email && <>{isError.email}</>}</div>
-                                    </div>
-                                    <div className="col-input">
-                                        <label htmlFor="phoneNumber">Phone Number: </label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-user"
-                                            id="phoneNumber"
-                                            placeholder='Phone Number'
-                                            value={phoneNumber}
-                                            onChange={validateThePhone}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.phoneNumber && <>{isError.phoneNumber}</>}</div>
-                                    </div>
-                                </div>
-                                <div id="gender" className="form-group" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <label htmlFor="gender">Gender: </label>
-                                    <label htmlFor="male">
-                                        <input
-                                            type="radio"
-                                            className="sex"
-                                            name="gender"
-                                            chekced={gender === 'male'}
-                                            value="male"
-                                            onChange={(e) => setGender(e.target.value)}
-                                        />
-                                        Male
-                                    </label><br />
-                                    <label htmlFor="female">
-                                        <input
-                                            type="radio"
-                                            className="sex"
-                                            name="gender"
-                                            chekced={gender === 'female'}
-                                            value="female"
-                                            onChange={(e) => setGender(e.target.value)}
-                                        />
-                                        Female
-                                    </label><br />
-                                    <label htmlFor="unknown">
-                                        <input
-                                            type="radio"
-                                            className="sex"
-                                            name="gender"
-                                            chekced={gender === 'unknown'}
-                                            value="unknown"
-                                            onChange={(e) => setGender(e.target.value)}
-                                        />
-                                        Unknown
-                                    </label><br />
-                                </div>
-                                <div className="redAsterisk">&nbsp;{isError.gender && <>{isError.gender}</>}</div>
-                                <div className="form-group row">
-                                    <div className="col-dropdownlist">
-                                        <label htmlFor="brand">Brand: <span style={{ color: 'red' }}>*</span></label>
-                                        <select
-                                            className="dropdownlist"
-                                            value={brand}
-                                            onChange={(e) => setBrand(e.target.value)}
-                                        >
-                                            <option value="">---</option>
-                                            {getAllFromJson.map((getAllBrand) => (
-                                                <option value={getAllBrand.name}>{getAllBrand.name}</option>
-                                            ))}
-                                        </select>
-                                        <div className="redAsterisk">&nbsp;{isError.brand && <>{isError.brand}</>}</div>
-                                    </div>
-                                    <div className="col-dropdownlist">
-                                        <label htmlFor="brand">Model: <span style={{ color: 'red' }}>*</span></label>
-                                        <select
-                                            className="dropdownlist"
-                                            value={model}
-                                            onChange={(e) => setModel(e.target.value)}
-                                            disabled={!brand}
-                                        >
-                                            <option value="">---</option>
-                                            {getModelsByBrand(brand).map((model) => (
-                                                <option value={model.name}>{model.name}</option>
-                                            ))}
-                                        </select>
-                                        <div className="redAsterisk">&nbsp;{isError.model && <>{isError.model}</>}</div>
-                                    </div>
-                                </div>
+                                <ReuseableGroup
+                                    elements={
+                                        <>
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="First Name: "
+                                                type="text"
+                                                id="firstName"
+                                                value={firstName}
+                                                placeholder="First Name"
+                                                onChange={validateFirstName}
+                                                error={isError.firstName}
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Last Name: "
+                                                type="text"
+                                                id="lastName"
+                                                value={lastName}
+                                                placeholder="Last Name"
+                                                onChange={validateLastName}
+                                                error={isError.lastName}
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Password: "
+                                                type={isShowPassword ? "text" : "password"}
+                                                id="pass"
+                                                value={password}
+                                                placeholder="Password"
+                                                onChange={validateThePwd}
+                                                error={isError.password}
+                                                pwd={
+                                                    <ReuseableShowPwd
+                                                        src={isShowPassword ? eyeOpen : eyeClose}
+                                                        value={isShowPassword}
+                                                        onClick={() => setIsShowPassword((prev) => !prev)}
+                                                    />
+                                                }
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Confirm Password: "
+                                                type={isShowCfPwd ? "text" : "password"}
+                                                id="cfPass"
+                                                value={confirmPassword}
+                                                placeholder="Confirm Password"
+                                                onChange={validateTheCfPwd}
+                                                error={isError.confirmPassword}
+                                                pwd={
+                                                    <ReuseableShowPwd
+                                                        src={isShowCfPwd ? eyeOpen : eyeClose}
+                                                        value={isShowCfPwd}
+                                                        onClick={() => setIsShowCfPwd((prev) => !prev)}
+                                                    />
+                                                }
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="D.O.B: "
+                                                type="date"
+                                                id="Dob"
+                                                value={dob}
+                                                onChange={e => setDob(e.target.value)}
+                                                error={isError.dob}
+                                                max={getToday()}
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Address: "
+                                                type="text"
+                                                id="address"
+                                                value={address}
+                                                placeholder="Address"
+                                                onChange={validateTheAddress}
+                                                error={isError.address}
+                                            />
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Email: "
+                                                type="email"
+                                                id="email"
+                                                value={email}
+                                                placeholder="Email"
+                                                onChange={validateTheEmail}
+                                                error={isError.email}
+                                            />
+                                            <ReuseableInput
+                                                label="Phone Number: "
+                                                type="text"
+                                                id="phoneNumber"
+                                                value={phoneNumber}
+                                                placeholder="Phone Number"
+                                                onChange={validateThePhone}
+                                                error={isError.phoneNumber}
+                                            />
+                                        </>
+                                    }
+                                />
+                                <ReuseableGroup
+                                    elements={
+                                        <>
+                                            <label>Gender: </label>
+                                            <ReuseableRadio
+                                                checked={gender === 'male'}
+                                                value="male"
+                                                onChange={(e) => setGender(e.target.value)}
+                                                label="Male"
+                                            />
+                                            <ReuseableRadio
+                                                checked={gender === 'female'}
+                                                value="female"
+                                                onChange={(e) => setGender(e.target.value)}
+                                                label="Female"
+                                            />
+                                            <ReuseableRadio
+                                                checked={gender === 'unknown'}
+                                                value="unknown"
+                                                onChange={(e) => setGender(e.target.value)}
+                                                label="Unknown"
+                                            />
+                                        </>
+                                    }
+                                />
+                                <ReuseableGroup
+                                    elements={
+                                        <>
+                                            <ReuseableDropdownlist
+                                                value="brand"
+                                                label="Brand: "
+                                                onChange={(e) => setBrand(e.target.value)}
+                                                json={getAllFromJson.map((getAllBrand) => (
+                                                    <option key={getAllBrand.name} value={getAllBrand.name}>{getAllBrand.name}</option>
+                                                ))}
+                                                error={isError.brand}
+                                            />
+                                            <ReuseableDropdownlist
+                                                value="model"
+                                                label="Model: "
+                                                onChange={(e) => setModel(e.target.value)}
+                                                json={getModelsByBrand(brand).map((model) => (
+                                                    <option key={model.name} value={model.name}>{model.name}</option>
+                                                ))}
+                                                error={isError.model}
+                                                disabled={!brand}
+                                            />
+                                        </>
+                                    }
+                                />
                                 <div className="btn-container" style={{ marginTop: '30px' }}>
-                                    <button type='submit' className={isDisabled ? "action-button" : "action-button-disabled"} disabled={!isDisabled}>Submit</button>
-                                    <button type='reset' className={isDisabledClear ? "action-button" : "action-button-disabled"} disabled={!isDisabledClear}>Clear</button>
+                                    <ReuseableActionButton
+                                        type='submit'
+                                        disabledClass={isDisabled}
+                                        disabled={!isDisabled}
+                                        label='Submit'
+                                    />
+                                    <ReuseableActionButton
+                                        type='reset'
+                                        disabledClass={isDisabledClear}
+                                        disabled={!isDisabledClear}
+                                        label='Clear'
+                                    />
                                 </div>
                             </form>
                         </div>
