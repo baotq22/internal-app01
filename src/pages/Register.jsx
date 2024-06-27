@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import '../assets/css/sb-admin-2.min.css'
+import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
+import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
+import getAllFromJson from "../assets/json/brand.json"
 
 function Registers() {
     const [firstName, setFirstName] = useState('')
@@ -16,6 +19,7 @@ function Registers() {
     const [isError, setIsError] = useState({});
     const [isMatchPwd, setIsMatchPwd] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
+    const [isDisabledClear, setIsDisabledClear] = useState(false)
     const [isShowPassword, setIsShowPassword] = useState(false)
     const [isShowCfPwd, setIsShowCfPwd] = useState(false)
 
@@ -49,6 +53,16 @@ function Registers() {
             validateEmail(email) && email !== '' && dob !== '' &&
             validatePassword(password) === null && gender !== '' && brand !== ''
         setIsDisabled(enabled)
+        
+        const enabledClear =
+            firstName !== '' ||
+            lastName !== '' ||
+            password !== '' ||
+            confirmPassword !== '' ||
+            address !== '' ||
+            email !== '' || dob !== '' ||
+            gender !== '' || brand !== ''
+        setIsDisabledClear(enabledClear)
     }, [firstName, lastName, password, confirmPassword, address, email, dob, gender, brand])
 
     const errors = {}
@@ -244,17 +258,16 @@ function Registers() {
                                         <div className="redAsterisk">&nbsp;{isError.lastName && <>{isError.lastName}</>}</div>
                                     </div>
                                     <div className="col-input mb-3 mb-sm-0">
-                                        <label htmlFor="pass">Password: <span style={{ color: 'red' }}>*</span>
-                                            <input
-                                                id="checkPwd"
-                                                type="checkbox"
-                                                value={isShowPassword}
-                                                onChange={() =>
-                                                    setIsShowPassword((prev) => !prev)
-                                                }
-                                                style={{ position: 'absolute' }}
-                                            />
-                                        </label>
+                                        <label htmlFor="pass">Password: <span style={{ color: 'red' }}>*</span></label>
+                                        <img
+                                            src={isShowPassword ? eyeOpen : eyeClose}
+                                            className='pwdAppear'
+                                            value={isShowPassword}
+                                            onClick={() =>
+                                                setIsShowPassword((prev) => !prev)
+                                            }
+                                            style={{ position: 'absolute' }}
+                                        />
                                         <input
                                             type={
                                                 isShowPassword ? "text" : "password"
@@ -268,17 +281,15 @@ function Registers() {
                                         <div className="redAsterisk">&nbsp;{isError.password && <>{isError.password}</>}</div>
                                     </div>
                                     <div className="col-input">
-                                        <label htmlFor="cfPass">Confirm Password: <span style={{ color: 'red' }}>*</span>
-                                            <input
-                                                id="checkCfPwd"
-                                                type="checkbox"
-                                                value={isShowCfPwd}
-                                                onChange={() =>
-                                                    setIsShowCfPwd((prev) => !prev)
-                                                }
-                                                style={{ position: 'absolute' }}
-                                            />
-                                        </label>
+                                        <label htmlFor="cfPass">Confirm Password: <span style={{ color: 'red' }}>*</span></label>
+                                        <img
+                                            src={isShowCfPwd ? eyeOpen : eyeClose}
+                                            className='pwdAppear'
+                                            value={isShowCfPwd}
+                                            onClick={() =>
+                                                setIsShowCfPwd((prev) => !prev)
+                                            }
+                                        />
                                         <input
                                             type={
                                                 isShowCfPwd ? "text" : "password"
@@ -309,7 +320,7 @@ function Registers() {
                                             type="text"
                                             className="form-control form-control-user"
                                             id="address"
-                                            placeholder='Email Address'
+                                            placeholder='Address'
                                             value={address}
                                             onChange={validateTheAddress}
                                         />
@@ -378,31 +389,22 @@ function Registers() {
                                 </div>
                                 <div className="redAsterisk">&nbsp;{isError.gender && <>{isError.gender}</>}</div>
                                 <div className="form-group">
-                                    <label htmlFor="brand">Option: <span style={{ color: 'red' }}>*</span></label>
-                                    <select 
-                                        className="dropdownlist" 
-                                        value={brand} 
+                                    <label htmlFor="brand">Brand: <span style={{ color: 'red' }}>*</span></label>
+                                    <select
+                                        className="dropdownlist"
+                                        value={brand}
                                         onChange={(e) => setBrand(e.target.value)}
                                     >
                                         <option value="">---</option>
-                                        <option value="Audi">Audi</option>
-                                        <option value="BMW">BMW</option>
-                                        <option value="Citroen">Citroen</option>
-                                        <option value="Ford">Ford</option>
-                                        <option value="Honda">Honda</option>
-                                        <option value="Jaguar">Jaguar</option>
-                                        <option value="Land Rover">Land Rover</option>
-                                        <option value="Mercedes">Mercedes</option>
-                                        <option value="Mini">Mini</option>
-                                        <option value="Nissan">Nissan</option>
-                                        <option value="Toyota">Toyota</option>
-                                        <option value="Volvo">Volvo</option>
+                                        {getAllFromJson.map((getAllBrand) => (
+                                            <option value={getAllBrand.name}>{getAllBrand.name}</option>
+                                        ))}
                                     </select>
                                     <div className="redAsterisk">&nbsp;{isError.brand && <>{isError.brand}</>}</div>
                                 </div>
                                 <div className="btn-container" style={{ marginTop: '30px' }}>
-                                    <button type='submit' className="action-button">Submit</button>
-                                    <button type='reset' className="action-button">Clear</button>
+                                    <button type='submit' className={isDisabled ? "action-button" : "action-button-disabled"} disabled={!isDisabled}>Submit</button>
+                                    <button type='reset' className={isDisabledClear ? "action-button" : "action-button-disabled"} disabled={!isDisabledClear}>Clear</button>
                                 </div>
                             </form>
                         </div>
