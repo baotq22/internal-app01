@@ -70,6 +70,24 @@
   font-size: 1rem;
   border-radius: 10rem;
   width: 70%;
+  cursor: pointer;
+}
+
+.action-button-disabled {
+  font-weight: 400;
+  color: #fff;
+  background-color: #b5bdcb;
+  border-color: #b5bdcb;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10rem;
+  width: 70%;
+}
+
+.pwdAppear {
+  margin-left: 10px;;
+  width: 20px;
+  height: 20px;
 }
 
 .dropdownlist {
