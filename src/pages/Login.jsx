@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react'
 import '../assets/css/sb-admin-2.min.css'
+import ReuseableInput from '../components/reuseableComponents/ReuseableInput50';
+import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd';
+import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
+import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
+import ReuseableGroup from '../components/reuseableComponents/ReuseableGroup';
 
 function Login() {
     const [password, setPassword] = useState('')
@@ -96,44 +101,39 @@ function Login() {
                                 <h1 className="h4 text-gray-900 mb-4">Sign In!</h1>
                             </div>
                             <form onSubmit={btnSubmit} onReset={btnClear} id="form" className="user">
-                                <div className="form-group row">
-                                    <div className="col-input-login">
-                                        <label htmlFor="email">Email: <span style={{ color: 'red' }}>*</span></label>
-                                        <input
-                                            type="email"
-                                            className="form-control form-control-user"
-                                            id="email"
-                                            placeholder='Email'
-                                            value={email}
-                                            onChange={validateTheEmail}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.email && <>{isError.email}</>}</div>
-                                    </div>
-                                    <div className="col-input-login mb-3 mb-sm-0">
-                                        <label htmlFor="pass">Password: <span style={{ color: 'red' }}>*</span>
-                                            <input
-                                                id="checkPwd"
-                                                type="checkbox"
-                                                value={isShowPassword}
-                                                onChange={() =>
-                                                    setIsShowPassword((prev) => !prev)
-                                                }
-                                                style={{ position: 'absolute' }}
+                                <ReuseableGroup
+                                    elements={
+                                        <>
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Email: "
+                                                type="email"
+                                                id="email"
+                                                value={email}
+                                                placeholder="Email"
+                                                onChange={validateTheEmail}
+                                                error={isError.email}
                                             />
-                                        </label>
-                                        <input
-                                            type={
-                                                isShowPassword ? "text" : "password"
-                                            }
-                                            className="form-control form-control-user"
-                                            id="pass"
-                                            placeholder='Password'
-                                            value={password}
-                                            onChange={validateThePwd}
-                                        />
-                                        <div className="redAsterisk">&nbsp;{isError.password && <>{isError.password}</>}</div>
-                                    </div>
-                                </div>
+                                            <ReuseableInput
+                                                requiredMark="*"
+                                                label="Password: "
+                                                type={isShowPassword ? "text" : "password"}
+                                                id="pass"
+                                                value={password}
+                                                placeholder="Password"
+                                                onChange={validateThePwd}
+                                                error={isError.password}
+                                                pwd={
+                                                    <ReuseableShowPwd
+                                                        src={isShowPassword ? eyeOpen : eyeClose}
+                                                        value={isShowPassword}
+                                                        onClick={() => setIsShowPassword((prev) => !prev)}
+                                                    />
+                                                }
+                                            />
+                                        </>
+                                    }
+                                />
                                 <div className="btn-container" style={{ marginTop: '30px' }}>
                                     <button type='submit' className="action-button">Submit</button>
                                     <button type='reset' className="action-button">Clear</button>
