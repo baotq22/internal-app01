@@ -60,7 +60,7 @@ function Registers() {
             password === confirmPassword &&
             address !== '' &&
             validateEmail(email) && email !== '' && dob !== '' && model !== ''
-        validatePassword(password) === null && gender !== '' && brand !== ''
+            validatePassword(password) === null && gender !== '' && brand !== ''
         setIsDisabled(enabled)
 
         const enabledClear =
@@ -73,6 +73,10 @@ function Registers() {
             gender !== '' || brand !== ''
         setIsDisabledClear(enabledClear)
     }, [firstName, lastName, password, confirmPassword, address, email, dob, gender, brand, model])
+
+    useEffect(() => {
+        setIsMatchPwd(password === confirmPassword)
+    }, [password, confirmPassword])
 
     const errors = {}
     const btnSubmit = (event) => {
@@ -318,7 +322,9 @@ function Registers() {
                                                         onClick={() => setIsShowCfPwd((prev) => !prev)}
                                                     />
                                                 }
+                                                errorMatch={!isMatchPwd && <div style={{ color: "red" }}>* Passwords do not match</div>}
                                             />
+                                            
                                             <ReuseableInput
                                                 requiredMark="*"
                                                 label="D.O.B: "
