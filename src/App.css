@@ -96,8 +96,33 @@
   width: 70%;
 }
 
+.input-box {
+  display: flex;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 1.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d1d3e2;
+  border-radius: 10rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-box-phone {
+  width: 80%;
+}
+
+.input-box-format {
+  width: 20%;
+}
+
 .pwdAppear {
-  margin-left: 10px;;
+  margin-left: 10px;
+  ;
   width: 20px;
   height: 20px;
   position: absolute;
@@ -116,6 +141,10 @@
   background-clip: padding-box;
   border: 1px solid #d1d3e2;
   border-radius: 10rem;
+}
+
+.col-input .col-input-flex {
+  display: flex
 }
 
 @media (min-width: 1665px) {

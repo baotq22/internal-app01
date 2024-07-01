@@ -9,6 +9,7 @@ import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd
 import ReuseableRadio from '../components/reuseableComponents/ReuseableRadio'
 import ReuseableDropdownlist from '../components/reuseableComponents/ReuseableDropdownlist'
 import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton'
+import ReuseableInputForPhone from '../components/reuseableComponents/ReuseableInputPhone'
 
 function Registers() {
     const [firstName, setFirstName] = useState('')
@@ -18,10 +19,11 @@ function Registers() {
     const [dob, setDob] = useState('')
     const [address, setAddress] = useState('')
     const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('+84 ')
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [gender, setGender] = useState('')
     const [brand, setBrand] = useState('')
     const [model, setModel] = useState('')
+    const [format, setFormat] = useState('+84 ')
 
     const [isError, setIsError] = useState({});
     const [isMatchPwd, setIsMatchPwd] = useState(true)
@@ -32,7 +34,7 @@ function Registers() {
 
     const validateName = (name) => /^[a-zA-Z ]+$/.test(name);
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-    const validatePhone = (phoneNumber) => /^\+84[3578]\d{8}$/.test(phoneNumber);
+    const validatePhone = (phoneNumber) => /^\[3578]\d{8}$/.test(phoneNumber);
 
     const validatePassword = (password) => {
         const criteria = [
@@ -126,7 +128,7 @@ function Registers() {
                 + "Password: " + password + "\n"
                 + "Confirm Password: " + confirmPassword + "\n"
                 + "Address: " + address + "\n"
-                + "Phone Number: " + phoneNumber + "\n"
+                + "Phone Number: " + format + phoneNumber + "\n"
                 + "Email: " + email + "\n"
                 + "Gender: " + gender + "\n"
                 + "Brand: " + brand + "\n"
@@ -155,7 +157,7 @@ function Registers() {
     }
 
     const validateFirstName = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         if (validateName(value) || value === '') {
             setFirstName(value)
             setIsError(prevErrors => ({ ...prevErrors, firstName: null }));
@@ -165,7 +167,7 @@ function Registers() {
     }
 
     const validateLastName = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         if (validateName(value) || value === '') {
             setLastName(value)
             setIsError(prevErrors => ({ ...prevErrors, lastName: null }));
@@ -175,7 +177,7 @@ function Registers() {
     }
 
     const validateTheEmail = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         setEmail(value);
         if (validateEmail(value) || value === '') {
             setEmail(value);
@@ -186,7 +188,7 @@ function Registers() {
     }
 
     const validateThePwd = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         setPassword(value);
         const pwdError = validatePassword(value)
         if (value || value === '') {
@@ -198,7 +200,7 @@ function Registers() {
     }
 
     const validateTheCfPwd = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         setConfirmPassword(value);
         if (value || value === '') {
             setConfirmPassword(value);
@@ -207,7 +209,7 @@ function Registers() {
     }
 
     const validateTheAddress = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         setAddress(value);
         if (value || value === '') {
             setAddress(value);
@@ -216,15 +218,20 @@ function Registers() {
     }
 
     const validateThePhone = (e) => {
-        const {value} = e.target
+        const { value } = e.target
         setPhoneNumber(value)
         if (validatePhone(value)) {
             setIsError(prevErrors => ({ ...prevErrors, phoneNumber: null }));
-        } else if (value.length > 12) {
-            setIsError(prevErrors => ({ ...prevErrors, phoneNumber: "Maximum character is 12 (included Plus symbol)" }))
+        } else if (value.length > 9) {
+            setIsError(prevErrors => ({ ...prevErrors, phoneNumber: "Maximum character is 9" }))
         } else {
-            setIsError(prevErrors => ({ ...prevErrors, phoneNumber: "Wrong of Vietnamese format" }))
+            setIsError(prevErrors => ({ ...prevErrors, phoneNumber: null }))
         }
+    }
+
+    const formatFixed = (e) => {
+        const { value } = e.target
+        setFormat(value)
     }
 
     const getToday = () => {
@@ -259,6 +266,7 @@ function Registers() {
                                                 label="First Name: "
                                                 type="text"
                                                 id="firstName"
+                                                classes="input-box"
                                                 value={firstName}
                                                 placeholder="First Name"
                                                 onChange={validateFirstName}
@@ -269,6 +277,7 @@ function Registers() {
                                                 label="Last Name: "
                                                 type="text"
                                                 id="lastName"
+                                                classes="input-box"
                                                 value={lastName}
                                                 placeholder="Last Name"
                                                 onChange={validateLastName}
@@ -279,6 +288,7 @@ function Registers() {
                                                 label="Password: "
                                                 type={isShowPassword ? "text" : "password"}
                                                 id="pass"
+                                                classes="input-box"
                                                 value={password}
                                                 placeholder="Password"
                                                 onChange={validateThePwd}
@@ -296,6 +306,7 @@ function Registers() {
                                                 label="Confirm Password: "
                                                 type={isShowCfPwd ? "text" : "password"}
                                                 id="cfPass"
+                                                classes="input-box"
                                                 value={confirmPassword}
                                                 placeholder="Confirm Password"
                                                 onChange={validateTheCfPwd}
@@ -313,6 +324,7 @@ function Registers() {
                                                 label="D.O.B: "
                                                 type="date"
                                                 id="Dob"
+                                                classes="input-box"
                                                 value={dob}
                                                 onChange={e => setDob(e.target.value)}
                                                 error={isError.dob}
@@ -323,6 +335,7 @@ function Registers() {
                                                 label="Address: "
                                                 type="text"
                                                 id="address"
+                                                classes="input-box"
                                                 value={address}
                                                 placeholder="Address"
                                                 onChange={validateTheAddress}
@@ -333,18 +346,22 @@ function Registers() {
                                                 label="Email: "
                                                 type="email"
                                                 id="email"
+                                                classes="input-box"
                                                 value={email}
                                                 placeholder="Email"
                                                 onChange={validateTheEmail}
                                                 error={isError.email}
                                             />
-                                            <ReuseableInput
+                                            <ReuseableInputForPhone 
                                                 label="Phone Number: "
                                                 type="text"
+                                                idFormat="format"
                                                 id="phoneNumber"
                                                 value={phoneNumber}
-                                                placeholder="Phone Number"
+                                                valueFormat={format}
+                                                onChangeFormat={formatFixed}
                                                 onChange={validateThePhone}
+                                                placeholder="Phone Number"
                                                 error={isError.phoneNumber}
                                             />
                                         </>
