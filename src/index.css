@@ -23,8 +23,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -32,6 +30,10 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.containerForPage {
+  margin-top: 150px;
 }
 
 button {

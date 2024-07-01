@@ -254,7 +254,7 @@ function Registers() {
 
     return (
         <>
-            <div className="card o-hidden border-0 shadow-lg my-5">
+            <div className="card o-hidden border-0 shadow-lg containerForPage">
                 <div className="card-body p-0">
                     <div className="form">
                         <div className="p-5">

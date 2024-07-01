@@ -19,13 +19,13 @@ function ChildFnc(props) {
 function ParentFnc() {
   const [count, setCount] = useState(0)
   return (
-    <>
+    <div className="containerForPage">
       <ChildFnc count1={count}/>
       <UpFnc setCount={setCount} />
       <DownFnc setCount={setCount} />
       <Reset setCount={setCount} />
       <SetInput setCount={setCount} />
-    </>
+    </div>
   )
 }
 
