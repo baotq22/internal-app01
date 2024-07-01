@@ -1,12 +1,12 @@
 export default function ReuseableShowPwd({src, value, onClick}) {
     return (
-        <>
+        <div className="pwdAppearContainer">
             <img 
                 src={src} 
-                className='pwdAppear' 
+                className='pwdLogo' 
                 value={value}
                 onClick={onClick}
             />
-        </>
+        </div>
     )
 }

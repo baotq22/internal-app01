@@ -31,26 +31,6 @@
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -120,12 +100,13 @@
   width: 20%;
 }
 
-.pwdAppear {
+.pwdAppearContainer {
   margin-left: 10px;
-  ;
+}
+
+.pwdLogo {
   width: 20px;
   height: 20px;
-  position: absolute;
 }
 
 .dropdownlist {
@@ -144,7 +125,8 @@
 }
 
 .col-input .col-input-flex {
-  display: flex
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 1665px) {
