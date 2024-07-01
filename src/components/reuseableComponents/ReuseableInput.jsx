@@ -1,6 +1,6 @@
 import '../../assets/css/sb-admin-2.min.css'
 
-export default function ReuseableInput({ classes, requiredMark, label, id, pwd, placeholder, error, type, value, onChange, ...props }) {
+export default function ReuseableInput({ classes, requiredMark, label, id, pwd, placeholder, error, errorMatch, type, value, onChange, ...props }) {
 
     return (
         <>
@@ -18,9 +18,8 @@ export default function ReuseableInput({ classes, requiredMark, label, id, pwd, 
                     />
                     {pwd}
                 </div>
-
-
                 <div className="redAsterisk">&nbsp;{error && <>{error}</>}</div>
+                {errorMatch}
             </div>
         </>
     )
