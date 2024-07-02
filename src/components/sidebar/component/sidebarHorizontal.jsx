@@ -1,7 +1,7 @@
 import showSidebar from "../../../assets/svg/sidebar-svgrepo-com.svg"
 import switchDirection from "../../../assets/svg/switch-horizontal-svgrepo-com.svg"
 
-export default function SidebarHorizontal({onClickShow, onClickHorizontal, sidebarRef, indicatorRef, display, rotate}) {
+export default function SidebarHorizontal({onClickShow, onChangeDirection, sidebarRef, indicatorRef, display, rotate}) {
     return (
         <div className='navbar'>
             <div className="navbar__hide">
@@ -13,7 +13,7 @@ export default function SidebarHorizontal({onClickShow, onClickHorizontal, sideb
                 <img
                     src={switchDirection}
                     className='sidebar__button'
-                    onClick={onClickHorizontal}
+                    onClick={onChangeDirection}
                 />
             </div>
             <div ref={sidebarRef} className="navbar__menu">

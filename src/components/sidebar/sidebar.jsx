@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import hideSidebar from "../../assets/svg/sidebar-svgrepo-com.svg"
 import './sidebar.css';
-import ReactDOM from 'react-dom/client'
 import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
+import useStore from "../../store";
 
 const sidebarNavItems = [
     {
@@ -26,10 +26,10 @@ const sidebarNavItems = [
 ]
 
 const SideBar = () => {
+    const { setScroll } = useStore()
     const [isShowSidebar, setIsShowSidebar] = useState(false)
     const [isHorizontal, setIsHorizontal] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
-    const [noScroll, setNoScroll] = useState(false)
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
@@ -41,49 +41,34 @@ const SideBar = () => {
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
     }, [location]);
 
-    const unscrollRoot = () => {
-        setIsShowSidebar(true)
-        setNoScroll(true)
+    const onSidebarClick = () => {
+        setScroll((prev) => !prev)
     }
 
-    const scrollRoot = () => {
-        setIsShowSidebar(true)
-        setNoScroll(false)
+    const onChangeDirection = () => {
+        setIsHorizontal(!isHorizontal)
     }
 
-    const resetRootScroll = () => {
+    const handleOnSidebarClickShow =() => {
         setIsShowSidebar(false)
-        setNoScroll(false)
+        setScroll(true)
     }
 
-    const scrollRootInHorizontal = () => {
-        setIsHorizontal(true)
-        setNoScroll(false)
-    }
-
-    const backToVertical = () => {
-        setIsHorizontal(false)
-        setNoScroll(true)
-    }
-
-    useEffect(() => {
-
-    })
     return (
         <div className='wrapper'>
             {!isShowSidebar ?
                 <SidebarHide
                     src={hideSidebar}
                     rotate={isHorizontal ? 'sidebar__button sidebar__btn__rotate' : 'sidebar__button'}
-                    onClick={isHorizontal ? scrollRoot : unscrollRoot}
+                    onClick={() => {setIsShowSidebar(true); setScroll(false)}}
                 />
                 : <>
                     {!isHorizontal ?
                         <SidebarVertical
                             sidebarRef={sidebarRef}
                             rotate='sidebar__button sidebar__btn__right'
-                            onClickShow={resetRootScroll}
-                            onClickHorizontal={scrollRootInHorizontal}
+                            onClickShow={handleOnSidebarClickShow}
+                            onChangeDirection={onChangeDirection}
                             indicatorRef={indicatorRef}
                             display={
                                 sidebarNavItems.map((item, index) => (
@@ -99,8 +84,8 @@ const SideBar = () => {
                         <SidebarHorizontal
                             sidebarRef={sidebarRef}
                             rotate='sidebar__button sidebar__btn__left'
-                            onClickShow={resetRootScroll}
-                            onClickHorizontal={backToVertical}
+                            onClickShow={onSidebarClick}
+                            onChangeDirection={onChangeDirection}
                             indicatorRef={indicatorRef}
                             display={
                                 sidebarNavItems.map((item, index) => (
