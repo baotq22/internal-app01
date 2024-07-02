@@ -25,7 +25,7 @@
     border: 1px solid black;
 }
 
-.wrapper{
+.navbar-wrapper{
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -33,7 +33,7 @@
     left: 0;
 }
 
-.wrapper .overlay {
+.navbar-wrapper .overlay {
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -43,20 +43,20 @@
     left: 0
 }
 
-.wrapper .overlay .blurry {
+.navbar-wrapper .overlay .blurry {
     backdrop-filter: blur(20px);
     height: 100vh;
     z-index: 10;    
     width: 100%;
 }
 
-.wrapper .overlay .sidebar {
+.navbar-wrapper .overlay .sidebar {
     height: 100vh;
     width: 330px;
     background-color: #fff;
 }
 
-.wrapper .overlay .sidebar .sidebar__hide {
+.navbar-wrapper .overlay .sidebar .sidebar__hide {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -67,7 +67,7 @@
     font-family: 'Mochiy Pop P one', sans-serif;
 }
 
-.wrapper .overlay .sidebar .sidebar__hide .sidebar__button {
+.navbar-wrapper .overlay .sidebar .sidebar__hide .sidebar__button {
     height: 60px;
     width: 60px;
     padding: 5px;
@@ -77,17 +77,17 @@
     margin: 0 5px;
 }
 
-.wrapper .overlay .sidebar .sidebar__hide .sidebar__btn__right {
+.navbar-wrapper .overlay .sidebar .sidebar__hide .sidebar__btn__right {
     transform: rotate(180deg);
 }
 
-.wrapper .overlay .sidebar .sidebar__menu {
+.navbar-wrapper .overlay .sidebar .sidebar__menu {
     position: relative;
     width: 80%;
     margin: auto;
 }
 
-.wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item {
+.navbar-wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item {
     display: flex;
     align-items: center;
     place-content: flex-start;
@@ -98,23 +98,23 @@
     padding: 15px;
 }
 
-.wrapper .overlay .sidebar .sidebar__menu .active {
+.navbar-wrapper .overlay .sidebar .sidebar__menu .active {
     color: #fff;
     background-color: #308efe;
     border-radius: 10px;
     width: 100%;
 }
 
-.wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item .sidebar__menu__item__icon {
+.navbar-wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item .sidebar__menu__item__icon {
     margin-right: 1rem;
 
 }
 
-.wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item .sidebar__menu__item__icon i {
+.navbar-wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__item .sidebar__menu__item__icon i {
     font-size: 1.75rem;
 }
 
-.wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__indicator {
+.navbar-wrapper .overlay .sidebar .sidebar__menu .sidebar__menu__indicator {
     position: absolute;
     top: 0;
     left: 50%;
@@ -126,7 +126,7 @@
     transition: 0.3s ease-in-out;
 }
 
-.wrapper .navbar {
+.navbar-wrapper .navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -136,7 +136,7 @@
     padding: 0.6em 1.2em;
 }
 
-.wrapper .navbar .navbar__hide {
+.navbar-wrapper .navbar .navbar__hide {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -147,7 +147,7 @@
     font-family: 'Mochiy Pop P one', sans-serif;
 }
 
-.wrapper .navbar .navbar__hide .sidebar__button {
+.navbar-wrapper .navbar .navbar__hide .sidebar__button {
     height: 60px;
     width: 60px;
     cursor: pointer;
@@ -156,16 +156,16 @@
     margin: 0 5px;
 }
 
-.wrapper .navbar .navbar__hide .sidebar__btn__left {
+.navbar-wrapper .navbar .navbar__hide .sidebar__btn__left {
     transform: rotate(-90deg);
 }
 
-.wrapper .navbar .navbar__menu {
+.navbar-wrapper .navbar .navbar__menu {
     display: flex;
     position: relative;
 }
 
-.wrapper .navbar .navbar__menu .sidebar__menu__item {
+.navbar-wrapper .navbar .navbar__menu .sidebar__menu__item {
     display: flex;
     align-items: center;
     place-content: flex-start;
@@ -176,23 +176,23 @@
     transition: color 0.3s ease-in-out;
 }
 
-.wrapper .navbar .navbar__menu .active {
+.navbar-wrapper .navbar .navbar__menu .active {
     color: #fff;
     background-color: #308efe;
     border-radius: 10px;
     width: 100%;
 }
 
-.wrapper .navbar .navbar__menu .sidebar__menu__item .sidebar__menu__item__icon {
+.navbar-wrapper .navbar .navbar__menu .sidebar__menu__item .sidebar__menu__item__icon {
     margin-right: 1rem;
 
 }
 
-.wrapper .navbar .navbar__menu .sidebar__menu__item .sidebar__menu__item__icon i {
+.navbar-wrapper .navbar .navbar__menu .sidebar__menu__item .sidebar__menu__item__icon i {
     font-size: 1.75rem;
 }
 
-.wrapper .navbar .navbar__menu .sidebar__menu__indicator {
+.navbar-wrapper .navbar .navbar__menu .sidebar__menu__indicator {
     position: absolute;
     top: 0;
     left: 50%;

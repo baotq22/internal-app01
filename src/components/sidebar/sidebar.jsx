@@ -26,9 +26,8 @@ const sidebarNavItems = [
 ]
 
 const SideBar = () => {
-    const { setScroll } = useStore()
+    const { setScroll, direction, setDirection } = useStore()
     const [isShowSidebar, setIsShowSidebar] = useState(false)
-    const [isHorizontal, setIsHorizontal] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
     const sidebarRef = useRef();
     const indicatorRef = useRef();
@@ -52,17 +51,17 @@ const SideBar = () => {
     }
 
     const onChangeDirection = () => {
-        setIsHorizontal(!isHorizontal)
+        setDirection("horizontal")
         setScroll(true)
     }
 
-    const handleOnSidebarClickShow =() => {
+    const handleOnSidebarClickShow = () => {
         setIsShowSidebar(false)
         setScroll(true)
     }
 
     const onChangeDirectionVertical = () => {
-        setIsHorizontal(false)
+        setDirection("vertical")
         setScroll(false)
     }
 
@@ -71,53 +70,52 @@ const SideBar = () => {
     }
 
     return (
-        <div className='wrapper'>
-            {!isShowSidebar ?
+        <div className='navbar-wrapper'>
+            {!isShowSidebar &&
                 <SidebarHide
                     src={hideSidebar}
-                    rotate={isHorizontal ? 'sidebar__button sidebar__btn__rotate' : 'sidebar__button'}
-                    onClick={isHorizontal ? onSidebarClickInHorizontal : onSidebarClick}
-                />
-                : <>
-                    {!isHorizontal ?
-                        <SidebarVertical
-                            sidebarRef={sidebarRef}
-                            rotate='sidebar__button sidebar__btn__right'
-                            onClickShow={handleOnSidebarClickShow}
-                            onChangeDirection={onChangeDirection}
-                            indicatorRef={indicatorRef}
-                            display={
-                                sidebarNavItems.map((item, index) => (
-                                    <Link to={item.to} key={index}>
-                                        <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                            {item.display}
-                                        </div>
-                                    </Link>
-                                ))
-                            }
-                        />
-                        :
-                        <SidebarHorizontal
-                            sidebarRef={sidebarRef}
-                            rotate='sidebar__button sidebar__btn__left'
-                            onClickShow={hideSidebarInHorizontal}
-                            onChangeDirection={onChangeDirectionVertical}
-                            indicatorRef={indicatorRef}
-                            display={
-                                sidebarNavItems.map((item, index) => (
-                                    <Link to={item.to} key={index}>
-                                        <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                            <div className="sidebar__menu__item__text">
-                                                {item.display}
-                                            </div>
-                                        </div>
-                                    </Link>
-                                ))
-                            }
-                        />
+                    rotate={direction === 'horizontal' ? 'sidebar__button sidebar__btn__rotate' : 'sidebar__button'}
+                    onClick={direction === 'horizontal' ? onSidebarClickInHorizontal : onSidebarClick}
+                />}
+            {isShowSidebar && direction === 'vertical' &&
+                <SidebarVertical
+                    sidebarRef={sidebarRef}
+                    rotate='sidebar__button sidebar__btn__right'
+                    onClickShow={handleOnSidebarClickShow}
+                    onChangeDirection={onChangeDirection}
+                    indicatorRef={indicatorRef}
+                    display={
+                        sidebarNavItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                    {item.display}
+                                </div>
+                            </Link>
+                        ))
                     }
-                </>}
-        </div>
+                />
+            }
+            {isShowSidebar && direction === 'horizontal' &&
+                <SidebarHorizontal
+                    sidebarRef={sidebarRef}
+                    rotate='sidebar__button sidebar__btn__left'
+                    onClickShow={hideSidebarInHorizontal}
+                    onChangeDirection={onChangeDirectionVertical}
+                    indicatorRef={indicatorRef}
+                    display={
+                        sidebarNavItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
+                    }
+                />
+            }
+        </div >
     )
 };
 
