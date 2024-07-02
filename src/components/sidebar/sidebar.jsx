@@ -42,16 +42,32 @@ const SideBar = () => {
     }, [location]);
 
     const onSidebarClick = () => {
-        setScroll((prev) => !prev)
+        setIsShowSidebar(true)
+        setScroll(false)
+    }
+
+    const onSidebarClickInHorizontal = () => {
+        setIsShowSidebar(true)
+        setScroll(true)
     }
 
     const onChangeDirection = () => {
         setIsHorizontal(!isHorizontal)
+        setScroll(true)
     }
 
     const handleOnSidebarClickShow =() => {
         setIsShowSidebar(false)
         setScroll(true)
+    }
+
+    const onChangeDirectionVertical = () => {
+        setIsHorizontal(false)
+        setScroll(false)
+    }
+
+    const hideSidebarInHorizontal = () => {
+        setIsShowSidebar(false)
     }
 
     return (
@@ -60,7 +76,7 @@ const SideBar = () => {
                 <SidebarHide
                     src={hideSidebar}
                     rotate={isHorizontal ? 'sidebar__button sidebar__btn__rotate' : 'sidebar__button'}
-                    onClick={() => {setIsShowSidebar(true); setScroll(false)}}
+                    onClick={isHorizontal ? onSidebarClickInHorizontal : onSidebarClick}
                 />
                 : <>
                     {!isHorizontal ?
@@ -84,8 +100,8 @@ const SideBar = () => {
                         <SidebarHorizontal
                             sidebarRef={sidebarRef}
                             rotate='sidebar__button sidebar__btn__left'
-                            onClickShow={onSidebarClick}
-                            onChangeDirection={onChangeDirection}
+                            onClickShow={hideSidebarInHorizontal}
+                            onChangeDirection={onChangeDirectionVertical}
                             indicatorRef={indicatorRef}
                             display={
                                 sidebarNavItems.map((item, index) => (
