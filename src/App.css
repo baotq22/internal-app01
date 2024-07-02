@@ -8,6 +8,10 @@
   background-size: cover;
 }
 
+.noScroll {
+  overflow: hidden;
+}
+
 .col-input-login {
   flex: 0 0 100%;
   max-width: 100%;
