@@ -1,7 +1,7 @@
 import showSidebar from "../../../assets/svg/sidebar-svgrepo-com.svg"
 import switchDirection from "../../../assets/svg/switch-horizontal-svgrepo-com.svg"
 
-export default function SidebarVertical({ onClickShow, onChangeDirection, sidebarRef, indicatorRef, display, rotate }) {
+export default function SidebarVertical({ onClickShow, onChangeDirection, clickToClose, sidebarRef, indicatorRef, display, rotate }) {
     return (
         <div className='overlay'>
             <div className='sidebar'>
@@ -25,7 +25,7 @@ export default function SidebarVertical({ onClickShow, onChangeDirection, sideba
                     {display}
                 </div>
             </div>
-            <div className="blurry"></div>
+            <div className="blurry" onClick={clickToClose}></div>
         </div>
     )
 }
