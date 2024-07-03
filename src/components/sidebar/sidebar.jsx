@@ -83,6 +83,7 @@ const SideBar = () => {
                     rotate='sidebar__button sidebar__btn__right'
                     onClickShow={handleOnSidebarClickShow}
                     onChangeDirection={onChangeDirection}
+                    clickToClose={handleOnSidebarClickShow}
                     indicatorRef={indicatorRef}
                     display={
                         sidebarNavItems.map((item, index) => (
