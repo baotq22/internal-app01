@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import hideSidebar from "../../assets/svg/sidebar-svgrepo-com.svg"
-import './sidebar.css';
+import '../scss/sidebar.scss';
 import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
