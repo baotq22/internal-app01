@@ -1,5 +1,3 @@
-import '../../assets/css/sb-admin-2.min.css'
-
 export default function ReuseableInputForPhone({ label, idFormat, id, placeholder, error, type, valueFormat, value, onChange, onChangeFormat, ...props }) {
 
     return (

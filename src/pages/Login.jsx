@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import '../assets/css/sb-admin-2.min.css'
 import ReuseableInput from '../components/reuseableComponents/ReuseableInput50';
 import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd';
 import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
@@ -93,53 +92,53 @@ function Login() {
 
     return (
         <>
-            <div className="card border-0 shadow-lg containerForPage">
-                <div className="card-body p-0">
+            <div className="containerForPage">
+                <div className="containerForPageBody">
                     <div className="form">
-                        <div className="p-5">
-                            <div className="text-center">
-                                <h1 className="h4 text-gray-900 mb-4">Sign In!</h1>
-                            </div>
-                            <form onSubmit={btnSubmit} onReset={btnClear} id="form" className="user">
-                                <ReuseableGroup
-                                    elements={
-                                        <>
-                                            <ReuseableInput
-                                                requiredMark="*"
-                                                label="Email: "
-                                                type="email"
-                                                id="email"
-                                                value={email}
-                                                placeholder="Email"
-                                                onChange={validateTheEmail}
-                                                error={isError.email}
-                                            />
-                                            <ReuseableInput
-                                                requiredMark="*"
-                                                label="Password: "
-                                                type={isShowPassword ? "text" : "password"}
-                                                id="pass"
-                                                value={password}
-                                                placeholder="Password"
-                                                onChange={validateThePwd}
-                                                error={isError.password}
-                                                pwd={
-                                                    <ReuseableShowPwd
-                                                        src={isShowPassword ? eyeOpen : eyeClose}
-                                                        value={isShowPassword}
-                                                        onClick={() => setIsShowPassword((prev) => !prev)}
-                                                    />
-                                                }
-                                            />
-                                        </>
-                                    }
-                                />
-                                <div className="btn-container" style={{ marginTop: '30px' }}>
-                                    <button type='submit' className="action-button">Submit</button>
-                                    <button type='reset' className="action-button">Clear</button>
-                                </div>
-                            </form>
+                        <div className="text-center">
+                            <h1 className="text-label">Sign In!</h1>
                         </div>
+                        <form onSubmit={btnSubmit} onReset={btnClear} id="form" className="user">
+                            <ReuseableGroup
+                                elements={
+                                    <>
+                                        <ReuseableInput
+                                            requiredMark="*"
+                                            label="Email: "
+                                            type="email"
+                                            id="email"
+                                            classes='input-box'
+                                            value={email}
+                                            placeholder="Email"
+                                            onChange={validateTheEmail}
+                                            error={isError.email}
+                                        />
+                                        <ReuseableInput
+                                            requiredMark="*"
+                                            label="Password: "
+                                            type={isShowPassword ? "text" : "password"}
+                                            id="pass"
+                                            classes='input-box'
+                                            value={password}
+                                            placeholder="Password"
+                                            onChange={validateThePwd}
+                                            error={isError.password}
+                                            pwd={
+                                                <ReuseableShowPwd
+                                                    src={isShowPassword ? eyeOpen : eyeClose}
+                                                    value={isShowPassword}
+                                                    onClick={() => setIsShowPassword((prev) => !prev)}
+                                                />
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
+                            <div className="btn-container" style={{ marginTop: '30px' }}>
+                                <button type='submit' className="action-button">Submit</button>
+                                <button type='reset' className="action-button">Clear</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

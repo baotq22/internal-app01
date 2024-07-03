@@ -1,4 +1,4 @@
-import "../App.css"
+import '../components/scss/App.scss'
 import { useState, useEffect } from 'react'
 
 function ChildFnc(props) {

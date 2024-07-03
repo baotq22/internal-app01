@@ -1,0 +1,185 @@
+$color_1: #555555;
+$color_2: #fff;
+$font-family_1: 'Mochiy Pop P one', sans-serif;
+$background-color_1: white;
+$background-color_2: #fff;
+$background-color_3: #308efe;
+
+.sidebar__show {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100px;
+	width: 100vw;
+	padding: 0.6em 1.2em;
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-family: $font-family_1;
+	.sidebar__button {
+		float: left;
+		height: 60px;
+		width: 60px;
+		cursor: pointer;
+		background-color: $background-color_1;
+		border-radius: 20px;
+		border: 1px solid black;
+	}
+	.sidebar__btn__rotate {
+		transform: rotate(90deg);
+		border: 1px solid black;
+	}
+}
+.navbar-wrapper {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	top: 0;
+	left: 0;
+	.overlay {
+		display: flex;
+		flex-direction: row;
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		.blurry {
+			backdrop-filter: blur(20px);
+			height: 100vh;
+			z-index: 10;
+			width: 100%;
+		}
+		.sidebar {
+			height: 100vh;
+			width: 330px;
+			background-color: $background-color_2;
+			.sidebar__hide {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				height: 120px;
+				font-size: 1.5rem;
+				font-weight: 700;
+				font-family: $font-family_1;
+				.sidebar__button {
+					height: 60px;
+					width: 60px;
+					padding: 5px;
+					cursor: pointer;
+					border: 1px solid black;
+					border-radius: 20px;
+					margin: 0 5px;
+				}
+				.sidebar__btn__right {
+					transform: rotate(180deg);
+				}
+			}
+			.sidebar__menu {
+				position: relative;
+				width: 80%;
+				margin: auto;
+				.sidebar__menu__item {
+					display: flex;
+					align-items: center;
+					place-content: flex-start;
+					font-size: 1.25rem;
+					font-weight: 500;
+					color: $color_1;
+					transition: color 0.3s ease-in-out;
+					padding: 15px;
+					.sidebar__menu__item__icon {
+						margin-right: 1rem;
+						i {
+							font-size: 1.75rem;
+						}
+					}
+				}
+				.active {
+					color: $color_2;
+					background-color: $background-color_3;
+					border-radius: 10px;
+					width: 100%;
+				}
+				.sidebar__menu__indicator {
+					position: absolute;
+					top: 0;
+					left: 50%;
+					width: calc(100% - 40px);
+					border-radius: 10px;
+					background-color: $background-color_3;
+					z-index: -1;
+					transform: translateX(-50%);
+					transition: 0.3s ease-in-out;
+				}
+			}
+		}
+	}
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100px;
+		width: 100vw;
+		background-color: $background-color_2;
+		padding: 0.6em 1.2em;
+		.navbar__hide {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			height: 80px;
+			font-size: 1.5rem;
+			font-weight: 700;
+			font-family: $font-family_1;
+			.sidebar__button {
+				height: 60px;
+				width: 60px;
+				cursor: pointer;
+				border: 1px solid black;
+				border-radius: 20px;
+				margin: 0 5px;
+			}
+			.sidebar__btn__left {
+				transform: rotate(-90deg);
+			}
+		}
+		.navbar__menu {
+			display: flex;
+			position: relative;
+			.sidebar__menu__item {
+				display: flex;
+				align-items: center;
+				place-content: flex-start;
+				padding: 1rem 3rem;
+				font-size: 1.25rem;
+				font-weight: 500;
+				color: $color_1;
+				transition: color 0.3s ease-in-out;
+				.sidebar__menu__item__icon {
+					margin-right: 1rem;
+					i {
+						font-size: 1.75rem;
+					}
+				}
+			}
+			.active {
+				color: $color_2;
+				background-color: $background-color_3;
+				border-radius: 10px;
+				width: 100%;
+			}
+			.sidebar__menu__indicator {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: calc(100% - 40px);
+				border-radius: 10px;
+				background-color: $background-color_3;
+				z-index: -1;
+				transform: translateX(-50%);
+				transition: 0.3s ease-in-out;
+			}
+		}
+	}
+}
