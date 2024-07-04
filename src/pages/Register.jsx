@@ -9,8 +9,10 @@ import ReuseableRadio from '../components/reuseableComponents/ReuseableRadio'
 import ReuseableDropdownlist from '../components/reuseableComponents/ReuseableDropdownlist'
 import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton'
 import ReuseableInputForPhone from '../components/reuseableComponents/ReuseableInputPhone'
+import { CheckWelcome } from '../checkWelcome'
 
 function Registers() {
+    CheckWelcome();
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')

@@ -3,16 +3,18 @@ export default function ReuseableInput({ requiredMark, label, classes, id, pwd, 
     return (
         <div className="col-input-login">
             <label htmlFor={id}>{label} <span style={{ color: 'red' }}>{requiredMark}</span></label>
-            {pwd}
-            <input
-                type={type}
-                className={classes}
-                id={id}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                {...props}
-            />
+            <div className='col-input-flex'>
+                <input
+                    type={type}
+                    className={classes}
+                    id={id}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    {...props}
+                />
+                {pwd}
+            </div>
             <div className="redAsterisk">&nbsp;{error && <>{error}</>}</div>
         </div>
     )

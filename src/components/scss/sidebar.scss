@@ -15,6 +15,7 @@ $background-color_3: #308efe;
 	font-size: 1.5rem;
 	font-weight: 700;
 	font-family: $font-family_1;
+
 	.sidebar__button {
 		float: left;
 		height: 60px;
@@ -24,17 +25,20 @@ $background-color_3: #308efe;
 		border-radius: 20px;
 		border: 1px solid black;
 	}
+
 	.sidebar__btn__rotate {
 		transform: rotate(90deg);
 		border: 1px solid black;
 	}
 }
+
 .navbar-wrapper {
 	width: 100%;
 	height: 100vh;
 	position: relative;
 	top: 0;
 	left: 0;
+
 	.overlay {
 		display: flex;
 		flex-direction: row;
@@ -43,16 +47,19 @@ $background-color_3: #308efe;
 		position: fixed;
 		top: 0;
 		left: 0;
+
 		.blurry {
 			backdrop-filter: blur(20px);
 			height: 100vh;
 			z-index: 10;
 			width: 100%;
 		}
+
 		.sidebar {
 			height: 100vh;
 			width: 330px;
 			background-color: $background-color_2;
+
 			.sidebar__hide {
 				display: flex;
 				flex-direction: row;
@@ -62,6 +69,7 @@ $background-color_3: #308efe;
 				font-size: 1.5rem;
 				font-weight: 700;
 				font-family: $font-family_1;
+
 				.sidebar__button {
 					height: 60px;
 					width: 60px;
@@ -71,14 +79,17 @@ $background-color_3: #308efe;
 					border-radius: 20px;
 					margin: 0 5px;
 				}
+
 				.sidebar__btn__right {
 					transform: rotate(180deg);
 				}
 			}
+
 			.sidebar__menu {
 				position: relative;
 				width: 80%;
 				margin: auto;
+
 				.sidebar__menu__item {
 					display: flex;
 					align-items: center;
@@ -88,19 +99,23 @@ $background-color_3: #308efe;
 					color: $color_1;
 					transition: color 0.3s ease-in-out;
 					padding: 15px;
+
 					.sidebar__menu__item__icon {
 						margin-right: 1rem;
+
 						i {
 							font-size: 1.75rem;
 						}
 					}
 				}
+
 				.active {
 					color: $color_2;
 					background-color: $background-color_3;
 					border-radius: 10px;
 					width: 100%;
 				}
+
 				.sidebar__menu__indicator {
 					position: absolute;
 					top: 0;
@@ -112,9 +127,24 @@ $background-color_3: #308efe;
 					transform: translateX(-50%);
 					transition: 0.3s ease-in-out;
 				}
+
+			}
+			.logout-btn {
+				background-color: aquamarine;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 8.2vw;
+				padding: 20px;
+				cursor: pointer;
+				
+				&:hover {
+					background-color: rgb(63, 201, 155);
+				}
 			}
 		}
 	}
+
 	.navbar {
 		position: fixed;
 		top: 0;
@@ -123,6 +153,7 @@ $background-color_3: #308efe;
 		width: 100vw;
 		background-color: $background-color_2;
 		padding: 0.6em 1.2em;
+
 		.navbar__hide {
 			display: flex;
 			flex-direction: row;
@@ -132,6 +163,7 @@ $background-color_3: #308efe;
 			font-size: 1.5rem;
 			font-weight: 700;
 			font-family: $font-family_1;
+
 			.sidebar__button {
 				height: 60px;
 				width: 60px;
@@ -140,13 +172,16 @@ $background-color_3: #308efe;
 				border-radius: 20px;
 				margin: 0 5px;
 			}
+
 			.sidebar__btn__left {
 				transform: rotate(-90deg);
 			}
 		}
+
 		.navbar__menu {
 			display: flex;
 			position: relative;
+
 			.sidebar__menu__item {
 				display: flex;
 				align-items: center;
@@ -156,19 +191,23 @@ $background-color_3: #308efe;
 				font-weight: 500;
 				color: $color_1;
 				transition: color 0.3s ease-in-out;
+
 				.sidebar__menu__item__icon {
 					margin-right: 1rem;
+
 					i {
 						font-size: 1.75rem;
 					}
 				}
 			}
+
 			.active {
 				color: $color_2;
 				background-color: $background-color_3;
 				border-radius: 10px;
 				width: 100%;
 			}
+
 			.sidebar__menu__indicator {
 				position: absolute;
 				top: 0;
@@ -179,6 +218,20 @@ $background-color_3: #308efe;
 				z-index: -1;
 				transform: translateX(-50%);
 				transition: 0.3s ease-in-out;
+			}
+		}
+
+		.logout-btn {
+			background-color: aquamarine;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 8.2vw;
+			padding: 20px;
+			cursor: pointer;
+			
+			&:hover {
+				background-color: rgb(63, 201, 155);
 			}
 		}
 	}
