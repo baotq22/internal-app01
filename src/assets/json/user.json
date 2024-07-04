@@ -1,0 +1,21 @@
+{
+    "firstName": "John",
+    "lastName": "Abraham",
+    "email": "john123@abc.com",
+    "password": "Abcdef1!",
+    "id": 1
+},
+{
+    "firstName": "Andrew",
+    "lastName": "Abraham",
+    "email": "andrew123@abc.com",
+    "password": "Abcdef1!",
+    "id": 2
+},
+{
+    "firstName": "Brian",
+    "lastName": "Abraham",
+    "email": "brian123@abc.com",
+    "password": "Abcdef1!",
+    "id": 3
+},

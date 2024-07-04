@@ -37,7 +37,6 @@ $background-color_3: #b5bdcb;
             flex: 1 1 auto;
             min-height: 1px;
             padding: 1.25rem;
-            padding: 0 !important;
 
             .form {
                 flex-wrap: wrap;
@@ -148,29 +147,38 @@ $background-color_3: #b5bdcb;
                             max-width: 100%;
                             padding: 0 20px;
 
-                            .input-box {
+                            .col-input-flex {
                                 display: flex;
-                                width: 100%;
-                                height: calc(1.5em + 0.75rem + 2px);
-                                padding: 1.5rem 1rem;
-                                font-size: 1rem;
-                                font-weight: 400;
-                                line-height: 1.5;
-                                color: $color_2;
-                                background-color: $background-color_1;
-                                background-clip: padding-box;
-                                border: 1px solid #d1d3e2;
-                                border-radius: 10rem;
-                                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                align-items: center;
+
+                                .input-box {
+                                    display: flex;
+                                    width: 100%;
+                                    height: calc(1.5em + 0.75rem + 2px);
+                                    padding: 1.5rem 1rem;
+                                    font-size: 1rem;
+                                    font-weight: 400;
+                                    line-height: 1.5;
+                                    color: $color_2;
+                                    background-color: $background-color_1;
+                                    background-clip: padding-box;
+                                    border: 1px solid #d1d3e2;
+                                    border-radius: 10rem;
+                                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                }
+
+                                .pwdAppearContainer {
+                                    margin-left: 10px;
+
+                                    .pwdLogo {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
                             }
 
-                            .pwdAppearContainer {
-                                margin-left: 10px;
-
-                                .pwdLogo {
-                                    width: 20px;
-                                    height: 20px;
-                                }
+                            .redAsterisk {
+                                color: $color_3;
                             }
                         }
                     }
@@ -217,6 +225,12 @@ $background-color_3: #b5bdcb;
                             .col-input {
                                 flex: 0 0 25%;
                                 max-width: 25%;
+                                padding: 0 20px;
+                            }
+
+                            .col-input-login {
+                                flex: 0 0 50%;
+                                max-width: 50%;
                                 padding: 0 20px;
                             }
                         }

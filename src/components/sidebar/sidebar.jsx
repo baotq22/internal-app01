@@ -5,24 +5,24 @@ import '../scss/sidebar.scss';
 import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
-import useStore from "../../store";
+import useStore from "../../store/index";
 
 const sidebarNavItems = [
     {
-        display: 'Welcome',
+        display: 'Login',
         to: '/',
         section: ''
-    },
-    {
-        display: 'Login',
-        to: '/login',
-        section: 'login'
     },
     {
         display: 'Register',
         to: '/register',
         section: 'register'
-    }
+    },
+    {
+        display: 'Welcome',
+        to: '/welcome',
+        section: 'welcome'
+    },
 ]
 
 const SideBar = () => {

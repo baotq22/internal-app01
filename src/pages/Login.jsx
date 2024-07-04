@@ -1,17 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ReuseableInput from '../components/reuseableComponents/ReuseableInput50';
 import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd';
 import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
 import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
 import ReuseableGroup from '../components/reuseableComponents/ReuseableGroup';
+import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+
 
 function Login() {
-    const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const [isError, setIsError] = useState({});
     const [isDisabled, setIsDisabled] = useState(false)
+    const [isDisabledClear, setIsDisabledClear] = useState(false)
     const [isShowPassword, setIsShowPassword] = useState(false)
+
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
     const validatePassword = (password) => {
@@ -34,6 +41,11 @@ function Login() {
             password !== '' &&
             validateEmail(email) && email !== ''
         setIsDisabled(enabled)
+
+        const enabledClear =
+            password || '' &&
+            validateEmail(email) || email || ''
+        setIsDisabledClear(enabledClear)
     }, [password, email])
 
     const errors = {}
@@ -57,6 +69,10 @@ function Login() {
                 "Email: " + email + "\n"
                 + "Password: " + password + "\n"
             )
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            navigate('/welcome');
+            toast.success("Login successfully")
         }
     }
 
@@ -65,6 +81,7 @@ function Login() {
         setPassword('');
         setEmail('');
         setIsError({});
+        setIsShowPassword(false);
     }
 
     const validateTheEmail = (e) => {
@@ -135,8 +152,18 @@ function Login() {
                                 }
                             />
                             <div className="btn-container" style={{ marginTop: '30px' }}>
-                                <button type='submit' className="action-button">Submit</button>
-                                <button type='reset' className="action-button">Clear</button>
+                                <ReuseableActionButton
+                                    type='submit'
+                                    disabledClass={isDisabled}
+                                    disabled={!isDisabled}
+                                    label='Submit'
+                                />
+                                <ReuseableActionButton
+                                    type='reset'
+                                    disabledClass={isDisabledClear}
+                                    disabled={!isDisabledClear}
+                                    label='Clear'
+                                />
                             </div>
                         </form>
                     </div>
