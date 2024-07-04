@@ -1,3 +1,4 @@
+import { CheckLogin } from '../checkLogin'
 import '../components/scss/App.scss'
 import { useState, useEffect } from 'react'
 
@@ -18,6 +19,7 @@ function ChildFnc(props) {
 
 function ParentFnc() {
   const [count, setCount] = useState(0)
+  CheckLogin()
   return (
     <div className="containerForPage">
       <ChildFnc count1={count}/>

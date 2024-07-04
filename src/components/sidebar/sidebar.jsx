@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import hideSidebar from "../../assets/svg/sidebar-svgrepo-com.svg"
 import '../scss/sidebar.scss';
 import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
 import useStore from "../../store/index";
+
+const email = localStorage.getItem('email')
+const password = localStorage.getItem('password')
 
 const sidebarNavItems = [
     {
@@ -17,12 +20,15 @@ const sidebarNavItems = [
         display: 'Register',
         to: '/register',
         section: 'register'
-    },
+    }
+]
+
+const sidebarNavItemsLoggedIn = [
     {
         display: 'Welcome',
         to: '/welcome',
         section: 'welcome'
-    },
+    }
 ]
 
 const SideBar = () => {
@@ -32,6 +38,7 @@ const SideBar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
+    const navigate = useNavigate();
 
     // change active index
     useEffect(() => {
@@ -69,6 +76,12 @@ const SideBar = () => {
         setIsShowSidebar(false)
     }
 
+    const logout = () => {
+        localStorage.removeItem('email')
+        localStorage.removeItem('password')
+        navigate('/')
+    }
+
     return (
         <div className='navbar-wrapper'>
             {!isShowSidebar &&
@@ -85,7 +98,15 @@ const SideBar = () => {
                     onChangeDirection={onChangeDirection}
                     clickToClose={handleOnSidebarClickShow}
                     indicatorRef={indicatorRef}
-                    display={
+                    display={email && password ?
+                        sidebarNavItemsLoggedIn.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                    {item.display}
+                                </div>
+                            </Link>
+                        ))
+                        :
                         sidebarNavItems.map((item, index) => (
                             <Link to={item.to} key={index}>
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
@@ -94,6 +115,7 @@ const SideBar = () => {
                             </Link>
                         ))
                     }
+                    logout={email && password ? <div className="logout-btn" onClick={logout}>Logout</div> : <></>}
                 />
             }
             {isShowSidebar && direction === 'horizontal' &&
@@ -103,7 +125,17 @@ const SideBar = () => {
                     onClickShow={hideSidebarInHorizontal}
                     onChangeDirection={onChangeDirectionVertical}
                     indicatorRef={indicatorRef}
-                    display={
+                    display={email && password ?
+                        sidebarNavItemsLoggedIn.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
+                        :
                         sidebarNavItems.map((item, index) => (
                             <Link to={item.to} key={index}>
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
@@ -114,6 +146,7 @@ const SideBar = () => {
                             </Link>
                         ))
                     }
+                    onLogout={logout}
                 />
             }
         </div >

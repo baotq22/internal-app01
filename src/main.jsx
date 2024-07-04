@@ -8,23 +8,33 @@ import Register from './pages/Register.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppLayout from './components/layout/layout.jsx'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function Main() {
 
   return (
     <>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<AppLayout />}>
-              <Route index element={<Login />} />
-              <Route path="/welcome" element={<App />} />
-              <Route path='/register' element={<Register />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        <ToastContainer
-          theme="colored"
-        />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<AppLayout />}>
+            <Route index element={<Login />} />
+            <Route path="/welcome" element={<App />} />
+            <Route path='/register' element={<Register />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   )
 }
