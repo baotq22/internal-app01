@@ -59,6 +59,7 @@ $background-color_3: #308efe;
 			height: 100vh;
 			width: 330px;
 			background-color: $background-color_2;
+			transition: .7s;
 
 			.sidebar__hide {
 				display: flex;
@@ -82,6 +83,19 @@ $background-color_3: #308efe;
 
 				.sidebar__btn__right {
 					transform: rotate(180deg);
+				}
+
+				.button__hide {
+					display: none;
+					.sidebar__button {
+						height: 60px;
+						width: 60px;
+						padding: 5px;
+						cursor: pointer;
+						border: 1px solid black;
+						border-radius: 20px;
+						margin: 0 5px;
+					}
 				}
 			}
 
@@ -177,6 +191,19 @@ $background-color_3: #308efe;
 			.sidebar__btn__left {
 				transform: rotate(-90deg);
 			}
+
+			.button__hide {
+				display: none;
+				.sidebar__button {
+					height: 60px;
+					width: 60px;
+					padding: 5px;
+					cursor: pointer;
+					border: 1px solid black;
+					border-radius: 20px;
+					margin: 0 5px;
+				}
+			}
 		}
 
 		.navbar__menu {
@@ -223,3 +250,4 @@ $background-color_3: #308efe;
 		}
 	}
 }
+
