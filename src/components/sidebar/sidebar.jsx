@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const sidebarNavItems = [
+const sidebarNavItemsForUnauthenticated = [
     {
         display: 'Login',
         to: '/',
@@ -24,7 +24,7 @@ const sidebarNavItems = [
     }
 ]
 
-const sidebarNavItemsLoggedIn = [
+const sidebarNavItemsForAuthenticated = [
     {
         display: 'Welcome',
         to: '/welcome',
@@ -35,6 +35,7 @@ const sidebarNavItemsLoggedIn = [
 const SideBar = () => {
     const { setScroll, direction, setDirection, isAuthenticated, setIsAuthenticated } = useStore()
     const [isShowSidebar, setIsShowSidebar] = useState(false)
+    const [currentNavbarItems, setCurrentNavbarItems] = useState([])
     const [isSidebarLoggedIn, setIsSidebarLoggedIn] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
     const sidebarRef = useRef();
@@ -45,15 +46,17 @@ const SideBar = () => {
     // change active index
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1];
-        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
+        const activeItem = currentNavbarItems.findIndex(item => item.section === curPath);
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-    }, [location]);
+    }, [location, currentNavbarItems]);
 
     useEffect(() => {
         if (isAuthenticated) {
             setIsSidebarLoggedIn(true)
+            setCurrentNavbarItems([...sidebarNavItemsForAuthenticated])
         } else {
             setIsSidebarLoggedIn(false)
+            setCurrentNavbarItems([...sidebarNavItemsForUnauthenticated])
         }
     }, [isAuthenticated])
 
@@ -109,24 +112,12 @@ const SideBar = () => {
                     onChangeDirection={onChangeDirection}
                     clickToClose={handleOnSidebarClickShow}
                     indicatorRef={indicatorRef}
-                    display={isSidebarLoggedIn ?
-                        sidebarNavItemsLoggedIn.map((item, index) => (
-                            <Link to={item.to} key={index}>
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    {item.display}
-                                </div>
-                            </Link>
-                        ))
-                        :
-                        sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index}>
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    {item.display}
-                                </div>
-                            </Link>
-                        ))
-                    }
-                    logout={isSidebarLoggedIn ? <div className="logout-btn" onClick={logout}>Logout</div> : <></>}
+                    currentItems={currentNavbarItems}
+                    direction={direction}
+                    activeIndex={activeIndex === 'index' ? 'active' : ''}
+                    logout={logout}
+                    logged={!isSidebarLoggedIn && 'button__hide'}
+                    clickAction={handleOnSidebarClickShow}
                 />
             }
             {isShowSidebar && direction === 'horizontal' &&
@@ -136,35 +127,12 @@ const SideBar = () => {
                     onClickShow={hideSidebarInHorizontal}
                     onChangeDirection={onChangeDirectionVertical}
                     indicatorRef={indicatorRef}
-                    display={isSidebarLoggedIn ?
-                        sidebarNavItemsLoggedIn.map((item, index) => (
-                            <Link to={item.to} key={index}>
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
-                                </div>
-                            </Link>
-                        ))
-                        :
-                        sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index}>
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
-                                </div>
-                            </Link>
-                        ))
-                    }
-                    onLogout={logout}
-                    logout={
-                        isSidebarLoggedIn ? <img
-                            src={logoutSVG}
-                            className='sidebar__button'
-                            onClick={logout}
-                        /> : <></>
-                    }
+                    currentItems={currentNavbarItems}
+                    direction={direction}
+                    activeIndex={activeIndex === 'index' ? 'active' : ''}
+                    logout={logout}
+                    logged={!isSidebarLoggedIn && 'button__hide'}
+                    clickAction={handleOnSidebarClickShow}
                 />
             }
         </div >

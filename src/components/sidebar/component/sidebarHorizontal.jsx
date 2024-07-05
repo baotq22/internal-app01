@@ -1,7 +1,9 @@
 import showSidebar from "../../../assets/svg/sidebar-svgrepo-com.svg"
 import switchDirection from "../../../assets/svg/switch-horizontal-svgrepo-com.svg"
+import logoutSVG from "../../../assets/svg/logout-svgrepo-com.svg"
+import NavItems from "./navItems"
 
-export default function SidebarHorizontal({onClickShow, onChangeDirection, sidebarRef, indicatorRef, display, logout, rotate}) {
+export default function SidebarHorizontal({ logged, onClickShow, onChangeDirection, sidebarRef, indicatorRef, currentItems, logout, rotate, activeIndex, direction, clickAction }) {
     return (
         <div className='navbar'>
             <div className="navbar__hide">
@@ -15,15 +17,30 @@ export default function SidebarHorizontal({onClickShow, onChangeDirection, sideb
                     className='sidebar__button'
                     onClick={onChangeDirection}
                 />
-                {logout}
-                
+                <div className={logged}>
+                    <img
+                        src={logoutSVG}
+                        className='sidebar__button'
+                        onClick={logout}
+                    />
+                </div>
             </div>
             <div ref={sidebarRef} className="navbar__menu">
                 <div
                     ref={indicatorRef}
                     className="sidebar__menu__indicator"
                 ></div>
-                {display}
+                {currentItems?.map((item, index) => {
+                    return <NavItems
+                        key={index}
+                        to={item.to}
+                        direction={direction}
+                        activeIndex={activeIndex}
+                        display={item.display}
+                        clickAction={clickAction}
+                    />
+                }
+                )}
             </div>
         </div>
     )
