@@ -10,12 +10,13 @@ import AppLayout from './components/layout/layout.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import useStore from "./store/index.js"
+import { CheckLogin } from './checkLogin.js'
 
 export const token = "J2r2cmIrDT9p4YYQSog7EogCQSKwcD2g2DpZrt0ul2yuyW5BBzlruJjKrgHYJpE5"
 
 function Main() {
   const { setIsAuthenticated } = useStore()
-
+  
   useEffect(() => {
     const token = localStorage.getItem('token')
     setIsAuthenticated(!!token)
@@ -24,8 +25,8 @@ function Main() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<AppLayout />}>
-            <Route index element={<Login />} />
+          <Route path="/" element={<AppLayout />}>
+            <Route index path='/login' element={<Login />} />
             <Route path="/welcome" element={<App />} />
             <Route path='/register' element={<Register />} />
           </Route>

@@ -8,7 +8,7 @@ export function CheckLogin() {
         const tokenLocalStorage = localStorage.getItem('token');
         
         if (!tokenLocalStorage) {
-            navigate('/')
+            navigate('/login')
         }
     }, []);
 }
