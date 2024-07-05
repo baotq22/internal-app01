@@ -93,7 +93,7 @@ const SideBar = () => {
         localStorage.removeItem('token')
         setIsAuthenticated(false)
         toast.success("Logged Out")
-        navigate('/')
+        navigate('/login')
     }
 
     return (
