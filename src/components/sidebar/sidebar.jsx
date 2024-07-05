@@ -14,8 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const sidebarNavItemsForUnauthenticated = [
     {
         display: 'Login',
-        to: '/',
-        section: ''
+        to: '/login',
+        section: 'login'
     },
     {
         display: 'Register',
@@ -114,7 +114,7 @@ const SideBar = () => {
                     indicatorRef={indicatorRef}
                     currentItems={currentNavbarItems}
                     direction={direction}
-                    activeIndex={activeIndex === 'index' ? 'active' : ''}
+                    activeIndex={activeIndex}
                     logout={logout}
                     logged={!isSidebarLoggedIn && 'button__hide'}
                     clickAction={handleOnSidebarClickShow}
@@ -129,7 +129,7 @@ const SideBar = () => {
                     indicatorRef={indicatorRef}
                     currentItems={currentNavbarItems}
                     direction={direction}
-                    activeIndex={activeIndex === 'index' ? 'active' : ''}
+                    activeIndex={activeIndex}
                     logout={logout}
                     logged={!isSidebarLoggedIn && 'button__hide'}
                     clickAction={handleOnSidebarClickShow}

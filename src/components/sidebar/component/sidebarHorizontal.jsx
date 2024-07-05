@@ -26,16 +26,12 @@ export default function SidebarHorizontal({ logged, onClickShow, onChangeDirecti
                 </div>
             </div>
             <div ref={sidebarRef} className="navbar__menu">
-                <div
-                    ref={indicatorRef}
-                    className="sidebar__menu__indicator"
-                ></div>
                 {currentItems?.map((item, index) => {
                     return <NavItems
                         key={index}
                         to={item.to}
                         direction={direction}
-                        activeIndex={activeIndex}
+                        activeIndex={activeIndex === index ? 'active' : ''}
                         display={item.display}
                         clickAction={clickAction}
                     />

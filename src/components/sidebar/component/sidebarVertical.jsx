@@ -32,7 +32,7 @@ export default function SidebarVertical({ logged, onClickShow, onChangeDirection
                             key={index}
                             to={item.to}
                             direction={direction}
-                            activeIndex={activeIndex}
+                            activeIndex={activeIndex === index ? 'active' : ''}
                             display={item.display}
                             clickAction={clickAction}
                         />

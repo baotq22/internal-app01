@@ -129,19 +129,6 @@ $background-color_3: #308efe;
 					border-radius: 10px;
 					width: 100%;
 				}
-
-				.sidebar__menu__indicator {
-					position: absolute;
-					top: 0;
-					left: 50%;
-					width: calc(100% - 40px);
-					border-radius: 10px;
-					background-color: $background-color_3;
-					z-index: -1;
-					transform: translateX(-50%);
-					transition: 0.3s ease-in-out;
-				}
-
 			}
 			.logout-btn {
 				background-color: aquamarine;
@@ -234,18 +221,6 @@ $background-color_3: #308efe;
 				background-color: $background-color_3;
 				border-radius: 10px;
 				width: 100%;
-			}
-
-			.sidebar__menu__indicator {
-				position: absolute;
-				top: 0;
-				left: 50%;
-				width: calc(100% - 40px);
-				border-radius: 10px;
-				background-color: $background-color_3;
-				z-index: -1;
-				transform: translateX(-50%);
-				transition: 0.3s ease-in-out;
 			}
 		}
 	}
