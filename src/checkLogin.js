@@ -5,10 +5,9 @@ export function CheckLogin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const usernameLocalStorage = localStorage.getItem('username');
-        const passwordLocalStorage = localStorage.getItem('password');
+        const tokenLocalStorage = localStorage.getItem('token');
         
-        if (!usernameLocalStorage && !passwordLocalStorage) {
+        if (!tokenLocalStorage) {
             navigate('/')
         }
     }, []);

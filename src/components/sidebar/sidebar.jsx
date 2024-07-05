@@ -6,9 +6,10 @@ import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
 import useStore from "../../store/index";
+import logoutSVG from "../../assets/svg/logout-svgrepo-com.svg"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const email = localStorage.getItem('email')
-const password = localStorage.getItem('password')
 
 const sidebarNavItems = [
     {
@@ -32,8 +33,9 @@ const sidebarNavItemsLoggedIn = [
 ]
 
 const SideBar = () => {
-    const { setScroll, direction, setDirection } = useStore()
+    const { setScroll, direction, setDirection, isAuthenticated, setIsAuthenticated } = useStore()
     const [isShowSidebar, setIsShowSidebar] = useState(false)
+    const [isSidebarLoggedIn, setIsSidebarLoggedIn] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
     const sidebarRef = useRef();
     const indicatorRef = useRef();
@@ -46,6 +48,14 @@ const SideBar = () => {
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
     }, [location]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            setIsSidebarLoggedIn(true)
+        } else {
+            setIsSidebarLoggedIn(false)
+        }
+    }, [isAuthenticated])
 
     const onSidebarClick = () => {
         setIsShowSidebar(true)
@@ -77,8 +87,9 @@ const SideBar = () => {
     }
 
     const logout = () => {
-        localStorage.removeItem('email')
-        localStorage.removeItem('password')
+        localStorage.removeItem('token')
+        setIsAuthenticated(false)
+        toast.success("Logged Out")
         navigate('/')
     }
 
@@ -98,7 +109,7 @@ const SideBar = () => {
                     onChangeDirection={onChangeDirection}
                     clickToClose={handleOnSidebarClickShow}
                     indicatorRef={indicatorRef}
-                    display={email && password ?
+                    display={isSidebarLoggedIn ?
                         sidebarNavItemsLoggedIn.map((item, index) => (
                             <Link to={item.to} key={index}>
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
@@ -115,7 +126,7 @@ const SideBar = () => {
                             </Link>
                         ))
                     }
-                    logout={email && password ? <div className="logout-btn" onClick={logout}>Logout</div> : <></>}
+                    logout={isSidebarLoggedIn ? <div className="logout-btn" onClick={logout}>Logout</div> : <></>}
                 />
             }
             {isShowSidebar && direction === 'horizontal' &&
@@ -125,7 +136,7 @@ const SideBar = () => {
                     onClickShow={hideSidebarInHorizontal}
                     onChangeDirection={onChangeDirectionVertical}
                     indicatorRef={indicatorRef}
-                    display={email && password ?
+                    display={isSidebarLoggedIn ?
                         sidebarNavItemsLoggedIn.map((item, index) => (
                             <Link to={item.to} key={index}>
                                 <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
@@ -147,6 +158,13 @@ const SideBar = () => {
                         ))
                     }
                     onLogout={logout}
+                    logout={
+                        isSidebarLoggedIn ? <img
+                            src={logoutSVG}
+                            className='sidebar__button'
+                            onClick={logout}
+                        /> : <></>
+                    }
                 />
             }
         </div >
