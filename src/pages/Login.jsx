@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import ReuseableInput from '../components/reuseableComponents/ReuseableInput50';
 import ReuseableShowPwd from '../components/reuseableComponents/ReuseableShowPwd';
 import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
@@ -9,10 +9,13 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckWelcome } from '../checkWelcome';
+import useStore from "../store/index";
+import { token } from '../main';
 
 
 function Login() {
     CheckWelcome();
+    const { setIsAuthenticated } = useStore()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
@@ -72,9 +75,9 @@ function Login() {
                 "Email: " + email + "\n"
                 + "Password: " + password + "\n"
             )
-            localStorage.setItem('email', email);
-            localStorage.setItem('password', password);
-            navigate('/welcome');
+            localStorage.setItem('token', token)
+            setIsAuthenticated(true)
+            navigate('/welcome')
             toast.success("Login successfully")
         }
     }

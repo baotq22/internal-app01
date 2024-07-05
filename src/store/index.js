@@ -4,7 +4,9 @@ const useStore = create((set) => ({
   scroll: true,
   setScroll: (scroll) => set({ scroll }),
   direction: "vertical",
-  setDirection: (direction) => set({direction})
+  setDirection: (direction) => set({direction}),
+  isAuthenticated: false,
+  setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated })
 }))
 
 export default useStore;

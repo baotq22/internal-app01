@@ -2,7 +2,6 @@ import showSidebar from "../../../assets/svg/sidebar-svgrepo-com.svg"
 import switchDirection from "../../../assets/svg/switch-horizontal-svgrepo-com.svg"
 
 export default function SidebarVertical({ onClickShow, onChangeDirection, clickToClose, sidebarRef, indicatorRef, display, rotate, logout }) {
-    const name = localStorage.getItem('email')
     return (
         <div className='overlay'>
             <div className='sidebar'>
@@ -18,7 +17,6 @@ export default function SidebarVertical({ onClickShow, onChangeDirection, clickT
                         onClick={onChangeDirection}
                     />
                 </div>
-                <div>{name}</div>
                 <div ref={sidebarRef} className="sidebar__menu">
                     <div
                         ref={indicatorRef}

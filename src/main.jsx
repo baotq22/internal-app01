@@ -1,4 +1,4 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import '../src/assets/css/sb-admin-2.min.css'
 import '../src/components/scss/App.scss'
@@ -9,9 +9,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppLayout from './components/layout/layout.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import useStore from "./store/index.js"
+
+export const token = "J2r2cmIrDT9p4YYQSog7EogCQSKwcD2g2DpZrt0ul2yuyW5BBzlruJjKrgHYJpE5"
 
 function Main() {
+  const { setIsAuthenticated } = useStore()
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    setIsAuthenticated(!!token)
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -29,7 +37,6 @@ function Main() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
