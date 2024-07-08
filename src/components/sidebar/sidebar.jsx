@@ -28,6 +28,11 @@ const sidebarNavItemsForAuthenticated = [
         display: 'Welcome',
         to: '/welcome',
         section: 'welcome'
+    },
+    {
+        display: 'Memory Game',
+        to: '/memory-game',
+        section: 'memory-game'
     }
 ]
 

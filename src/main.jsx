@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import useStore from "./store/index.js"
 import ProtectedRoute from './components/reuseableComponents/ProtectedRoute.jsx'
+import MemoryGame from './pages/MemoryGame.jsx'
 
 function Main() {
   const { setIsAuthenticated } = useStore()
@@ -26,6 +27,7 @@ function Main() {
           <Route path="/" element={<AppLayout />}>
             <Route index path='/login' element={<Login />} />
             <Route path='/welcome' element={<ProtectedRoute element={<App/>} />} />
+            <Route path='/memory-game' element={<ProtectedRoute element={<MemoryGame/>} />} />
             <Route path='/register' element={<Register />} />
           </Route>
         </Routes>
