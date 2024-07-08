@@ -32,6 +32,10 @@ $background-color_3: #308efe;
 	}
 }
 
+.hiddenBlurry {
+	display: none;
+}
+
 .navbar-wrapper {
 	width: 100%;
 	height: 100vh;
@@ -147,81 +151,81 @@ $background-color_3: #308efe;
 		}
 	}
 
-	.navbar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		height: 100px;
-		width: 100vw;
-		background-color: $background-color_2;
-		padding: 0.6em 1.2em;
+}
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100px;
+	width: 100vw;
+	background-color: $background-color_2;
+	padding: 0.6em 1.2em;
 
-		.navbar__hide {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			height: 80px;
-			font-size: 1.5rem;
-			font-weight: 700;
-			font-family: $font-family_1;
+	.navbar__hide {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 80px;
+		font-size: 1.5rem;
+		font-weight: 700;
+		font-family: $font-family_1;
 
+		.sidebar__button {
+			height: 60px;
+			width: 60px;
+			cursor: pointer;
+			border: 1px solid black;
+			border-radius: 20px;
+			margin: 0 5px;
+		}
+
+		.sidebar__btn__left {
+			transform: rotate(-90deg);
+		}
+
+		.button__hide {
+			display: none;
 			.sidebar__button {
 				height: 60px;
 				width: 60px;
+				padding: 5px;
 				cursor: pointer;
 				border: 1px solid black;
 				border-radius: 20px;
 				margin: 0 5px;
 			}
+		}
+	}
 
-			.sidebar__btn__left {
-				transform: rotate(-90deg);
-			}
+	.navbar__menu {
+		display: flex;
+		position: relative;
 
-			.button__hide {
-				display: none;
-				.sidebar__button {
-					height: 60px;
-					width: 60px;
-					padding: 5px;
-					cursor: pointer;
-					border: 1px solid black;
-					border-radius: 20px;
-					margin: 0 5px;
+		.sidebar__menu__item {
+			display: flex;
+			align-items: center;
+			place-content: flex-start;
+			padding: 1rem 3rem;
+			font-size: 1.25rem;
+			font-weight: 500;
+			color: $color_1;
+			transition: color 0.3s ease-in-out;
+
+			.sidebar__menu__item__icon {
+				margin-right: 1rem;
+
+				i {
+					font-size: 1.75rem;
 				}
 			}
 		}
 
-		.navbar__menu {
-			display: flex;
-			position: relative;
-
-			.sidebar__menu__item {
-				display: flex;
-				align-items: center;
-				place-content: flex-start;
-				padding: 1rem 3rem;
-				font-size: 1.25rem;
-				font-weight: 500;
-				color: $color_1;
-				transition: color 0.3s ease-in-out;
-
-				.sidebar__menu__item__icon {
-					margin-right: 1rem;
-
-					i {
-						font-size: 1.75rem;
-					}
-				}
-			}
-
-			.active {
-				color: $color_2;
-				background-color: $background-color_3;
-				border-radius: 10px;
-				width: 100%;
-			}
+		.active {
+			color: $color_2;
+			background-color: $background-color_3;
+			border-radius: 10px;
+			width: 100%;
 		}
 	}
 }
