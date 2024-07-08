@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export function CardFold() {
+function CardFold() {
     return (
         <div className="card-core">
             <div className='card-flex'>
@@ -12,13 +12,17 @@ export function CardFold() {
     )
 }
 
-export function CardUnfold({ images }) {
+function CardUnfold({ images, isFold, setIsFold }) {
+    const defaultBack = 'src/assets/img/mystery-box.png'
+    const handleCardClick = () => {
+        setIsFold(!isFold)
+    }
     return (
-        <div className="card-core">
+        <div className="card-core" onClick={handleCardClick}>
             <div className='card-flex'>
                 <div className="cardUnfold">
                     <div className="border">
-                        <img src={images} height="180px" width="120px" alt="card back"/>
+                        <img src={isFold ? defaultBack : images} height="180px" width="120px" alt="card back"/>
                     </div>
                 </div>
             </div>
@@ -27,10 +31,10 @@ export function CardUnfold({ images }) {
 }
 
 export function Card({ card }) {
+    const [isFold, setIsFold] = useState(true)
     return (
         <div>
-            <CardUnfold images={card} />
-            <CardFold />
+            <CardUnfold images={card} isFold={isFold} setIsFold={setIsFold}/>
         </div>
     )
 }

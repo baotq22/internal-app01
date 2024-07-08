@@ -2,17 +2,20 @@ import { Card } from '../components/memory-game/Card'
 import '../components/scss/MMG.scss'
 import getLayout4 from '../assets/json/layout4.json'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function MemoryGame() {
     const [cards, setCards] = useState([])
-    const [turn, setTurn] = useState(0)
+    const [mark, setMark] = useState(0)
+    const [firstSelect, setFirstSelect] = useState(null)
+    const [secondSelect, setSecondSelect] = useState(null)
     const shuffleCard = () => {
         const shuffleAciton = [...getLayout4, ...getLayout4]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: Math.random() }))
+            .map((card) => ({ ...card, id: uuidv4() }))
 
         setCards(shuffleAciton)
-        setTurn(0)
+        setMark(0)
     }
 
     console.log(cards)

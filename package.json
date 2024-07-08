@@ -24,6 +24,8 @@
     "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5",
     "react-transition-group": "^4.4.5",
+    "uuid": "^10.0.0",
+    "uuidv4": "^6.2.13",
     "yarn": "^1.22.22",
     "zustand": "^4.5.4"
   },
