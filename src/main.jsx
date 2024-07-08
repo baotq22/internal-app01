@@ -12,8 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import useStore from "./store/index.js"
 import ProtectedRoute from './components/reuseableComponents/ProtectedRoute.jsx'
 
-export const token = "J2r2cmIrDT9p4YYQSog7EogCQSKwcD2g2DpZrt0ul2yuyW5BBzlruJjKrgHYJpE5"
-
 function Main() {
   const { setIsAuthenticated } = useStore()
 
