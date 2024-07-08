@@ -3,7 +3,7 @@ import switchDirection from "../../../assets/svg/switch-horizontal-svgrepo-com.s
 import logoutSVG from "../../../assets/svg/logout-svgrepo-com.svg"
 import NavItems from "./navItems"
 
-export default function SidebarHorizontal({ logged, onClickShow, onChangeDirection, sidebarRef, indicatorRef, currentItems, logout, rotate, activeIndex, direction, clickAction }) {
+export default function SidebarHorizontal({ logged, onClickShow, onChangeDirection, sidebarRef, currentItems, logout, rotate, activeIndex, direction, clickAction }) {
     return (
         <div className='navbar'>
             <div className="navbar__hide">
