@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import hideSidebar from "../../assets/svg/sidebar-svgrepo-com.svg"
 import '../scss/sidebar.scss';
 import SidebarHide from './component/sidebarHide';
 import SidebarHorizontal from './component/sidebarHorizontal';
 import SidebarVertical from './component/sidebarVertical';
 import useStore from "../../store/index";
-import logoutSVG from "../../assets/svg/logout-svgrepo-com.svg"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
