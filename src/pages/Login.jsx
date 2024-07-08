@@ -5,7 +5,6 @@ import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
 import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
 import ReuseableGroup from '../components/reuseableComponents/ReuseableGroup';
 import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton';
-import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckWelcome } from '../checkWelcome';
@@ -18,7 +17,6 @@ function Login() {
     const { setIsAuthenticated } = useStore()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
 
     const [isError, setIsError] = useState({});
     const [isDisabled, setIsDisabled] = useState(false)

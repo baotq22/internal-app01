@@ -92,50 +92,53 @@ const SideBar = () => {
     const logout = () => {
         localStorage.removeItem('token')
         setIsAuthenticated(false)
+        setIsShowSidebar(false)
         toast.success("Logged Out")
         navigate('/login')
     }
 
     return (
-        <div className='navbar-wrapper'>
+        <>
             {!isShowSidebar &&
                 <SidebarHide
                     src={hideSidebar}
                     rotate={direction === 'horizontal' ? 'sidebar__button sidebar__btn__rotate' : 'sidebar__button'}
                     onClick={direction === 'horizontal' ? onSidebarClickInHorizontal : onSidebarClick}
                 />}
-            {isShowSidebar && direction === 'vertical' &&
-                <SidebarVertical
-                    sidebarRef={sidebarRef}
-                    rotate='sidebar__button sidebar__btn__right'
-                    onClickShow={handleOnSidebarClickShow}
-                    onChangeDirection={onChangeDirection}
-                    clickToClose={handleOnSidebarClickShow}
-                    indicatorRef={indicatorRef}
-                    currentItems={currentNavbarItems}
-                    direction={direction}
-                    activeIndex={activeIndex}
-                    logout={logout}
-                    logged={!isSidebarLoggedIn && 'button__hide'}
-                    clickAction={handleOnSidebarClickShow}
-                />
-            }
-            {isShowSidebar && direction === 'horizontal' &&
-                <SidebarHorizontal
-                    sidebarRef={sidebarRef}
-                    rotate='sidebar__button sidebar__btn__left'
-                    onClickShow={hideSidebarInHorizontal}
-                    onChangeDirection={onChangeDirectionVertical}
-                    indicatorRef={indicatorRef}
-                    currentItems={currentNavbarItems}
-                    direction={direction}
-                    activeIndex={activeIndex}
-                    logout={logout}
-                    logged={!isSidebarLoggedIn && 'button__hide'}
-                    clickAction={handleOnSidebarClickShow}
-                />
-            }
-        </div >
+            <div className={`navbar-wrapper ${isShowSidebar && direction === 'vertical'? '' : 'hiddenBlurry'}` }>
+                {isShowSidebar && direction === 'vertical' &&
+                    <SidebarVertical
+                        sidebarRef={sidebarRef}
+                        rotate='sidebar__button sidebar__btn__right'
+                        onClickShow={handleOnSidebarClickShow}
+                        onChangeDirection={onChangeDirection}
+                        clickToClose={handleOnSidebarClickShow}
+                        indicatorRef={indicatorRef}
+                        currentItems={currentNavbarItems}
+                        direction={direction}
+                        activeIndex={activeIndex}
+                        logout={logout}
+                        logged={!isSidebarLoggedIn && 'button__hide'}
+                        clickAction={handleOnSidebarClickShow}
+                    />
+                }
+            </div>
+                {isShowSidebar && direction === 'horizontal' &&
+                    <SidebarHorizontal
+                        sidebarRef={sidebarRef}
+                        rotate='sidebar__button sidebar__btn__left'
+                        onClickShow={hideSidebarInHorizontal}
+                        onChangeDirection={onChangeDirectionVertical}
+                        indicatorRef={indicatorRef}
+                        currentItems={currentNavbarItems}
+                        direction={direction}
+                        activeIndex={activeIndex}
+                        logout={logout}
+                        logged={!isSidebarLoggedIn && 'button__hide'}
+                        clickAction={handleOnSidebarClickShow}
+                    />
+                }
+        </>
     )
 };
 

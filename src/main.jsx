@@ -5,33 +5,33 @@ import '../src/components/scss/App.scss'
 import App from './pages/App.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/layout/layout.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import useStore from "./store/index.js"
-import { CheckLogin } from './checkLogin.js'
+import ProtectedRoute from './components/reuseableComponents/ProtectedRoute.jsx'
 
 export const token = "J2r2cmIrDT9p4YYQSog7EogCQSKwcD2g2DpZrt0ul2yuyW5BBzlruJjKrgHYJpE5"
 
 function Main() {
   const { setIsAuthenticated } = useStore()
-  
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     setIsAuthenticated(!!token)
   }, [])
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index path='/login' element={<Login />} />
-            <Route path="/welcome" element={<App />} />
+            <Route index path='/welcome' element={<ProtectedRoute element={<App/>} />} />
             <Route path='/register' element={<Register />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
       <ToastContainer
         position="top-right"
         autoClose={5000}
