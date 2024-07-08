@@ -6,7 +6,9 @@ const useStore = create((set) => ({
   direction: "vertical",
   setDirection: (direction) => set({direction}),
   isAuthenticated: false,
-  setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated })
+  setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
+  isFlip: false,
+  setIsFlip: (isFlip) => set({isFlip})
 }))
 
 export default useStore;

@@ -1,0 +1,92 @@
+$background-color_1: #5e5e5e;
+
+.containerForPageGame {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-image: url(../../assets/img/background-game.png);
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+
+    .containerForPageBody {
+        display: flex;
+        height: 90vh;
+        align-items: center;
+        justify-content: center;
+
+        .card-container-4 {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-container-6 {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-container-8 {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-container-10 {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.cardFold {
+    height: 100px;
+    width: 100px;
+    background-color: $background-color_1;
+    object-fit: contain;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    cursor: pointer;
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.cardUnfold {
+    height: 100px;
+    width: 100px;
+    background-color: $background-color_1;
+    border-radius: 20px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    cursor: pointer;
+
+    .border {
+        height: 80px;
+        width: 80px;
+        border-radius: 20px;
+        object-fit: contain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
