@@ -31,7 +31,6 @@ $background-color_3: #fff;
 
         .btnAction {
             font-weight: 400;
-            font-size: 40px;
             height: 50px;
             color: $color_1;
             text-align: center;
@@ -72,9 +71,8 @@ $background-color_3: #fff;
 
         .set-input {
             font-weight: 400;
-            font-size: 40px;
             height: 50px;
-            color: $color_3;
+            color: $color_1;
             text-align: center;
             border-radius: 10rem;
             width: 50px;
@@ -92,9 +90,8 @@ $background-color_3: #fff;
 
     .btnReset {
         font-weight: 400;
-        font-size: 40px;
         height: 50px;
-        color: $color_3;
+        color: $color_1;
         text-align: center;
         border-radius: 10rem;
         width: 50px;

@@ -1,6 +1,10 @@
 import { CheckLogin } from '../checkLogin'
 import { useState, useEffect } from 'react'
 import '../components/scss/Count.scss'
+import Plus from '../assets/svg/plus-svgrepo-com.svg'
+import Minus from '../assets/svg/minus-svgrepo-com.svg'
+import Go from '../assets/svg/arrow-narrow-right-svgrepo-com.svg'
+import ResetCount from '../assets/svg/refresh-ccw-alt-1-svgrepo-com.svg'
 
 function ChildFnc(props) {
   const { count1 } = props
@@ -37,7 +41,7 @@ function UpFnc(props) {
 
   return (
     <>
-      <button className='btnAction btnActionUp' onClick={() => setCount((count) => count + 1)}>+</button>
+      <button className='btnAction btnActionUp' onClick={() => setCount((count) => count + 1)}><img src={Plus} /></button>
     </>
   )
 }
@@ -47,7 +51,7 @@ function DownFnc(props) {
 
   return (
     <>
-      <button className='btnAction btnActionDown' onClick={() => setCount((count) => count - 1)}>-</button>
+      <button className='btnAction btnActionDown' onClick={() => setCount((count) => count - 1)}><img src={Minus} /></button>
     </>
   )
 }
@@ -57,7 +61,7 @@ function Reset(props) {
 
   return (
     <>
-      <button className='btnReset' onClick={() => setCount(0)}>↻</button>
+      <button className='btnReset' onClick={() => setCount(0)}><img src={ResetCount} /></button>
     </>
   )
 }
@@ -79,7 +83,7 @@ function SetInput(props) {
     <>
       <div className="input-container">
         <input className='input-box' type="text" onChange={e => setInput(e.target.value)} />
-        <button className='set-input' onClick={() => Action()}>→</button>
+        <button className='set-input' onClick={() => Action()}><img src={Go} /></button>
       </div>
       {error && <Error />}
     </>
