@@ -6,6 +6,11 @@ $background-color_1: #fff;
 $background-color_2: #4e73df;
 $background-color_3: #b5bdcb;
 
+@font-face {
+    font-family: 'Manrope';
+    src: url(../../assets/fonts/Manrope-Regular.ttf);
+}
+
 .noScroll {
     overflow: hidden;
 }
@@ -18,6 +23,8 @@ $background-color_3: #b5bdcb;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Manrope', 'Courier New', Courier, monospace;
+    text-transform: none;
 
     .containerForPage {
         padding: 2em;

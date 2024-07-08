@@ -1,6 +1,6 @@
 import { CheckLogin } from '../checkLogin'
-import '../components/scss/App.scss'
 import { useState, useEffect } from 'react'
+import '../components/scss/Count.scss'
 
 function ChildFnc(props) {
   const { count1 } = props
@@ -10,10 +10,9 @@ function ChildFnc(props) {
     setZero(count1 == 0)
   }, [count1])
   return (
-    <>
-      <div>{count1}</div>
-      <div>{Zero ? "A Zero" : "Not A Zero"}</div>
-    </>
+    <div className='display'>
+      <div>{"[" + count1 + "]"} - {Zero ? "A Zero" : "Not A Zero"}</div>
+    </div>
   )
 }
 
@@ -21,12 +20,14 @@ function ParentFnc() {
   const [count, setCount] = useState(0)
   CheckLogin()
   return (
-    <div className="containerForPage">
-      <ChildFnc count1={count}/>
-      <UpFnc setCount={setCount} />
-      <DownFnc setCount={setCount} />
-      <Reset setCount={setCount} />
+    <div className="containerForAppPage">
+      <div className="btnContainer">
+        <DownFnc setCount={setCount} />
+        <ChildFnc count1={count} />
+        <UpFnc setCount={setCount} />
+      </div>
       <SetInput setCount={setCount} />
+      <Reset setCount={setCount} />
     </div>
   )
 }
@@ -36,7 +37,7 @@ function UpFnc(props) {
 
   return (
     <>
-      <button onClick={() => setCount((count) => count + 1)}>Up</button>
+      <button className='btnAction btnActionUp' onClick={() => setCount((count) => count + 1)}>+</button>
     </>
   )
 }
@@ -46,7 +47,7 @@ function DownFnc(props) {
 
   return (
     <>
-      <button onClick={() => setCount((count) => count - 1)}>Down</button>
+      <button className='btnAction btnActionDown' onClick={() => setCount((count) => count - 1)}>-</button>
     </>
   )
 }
@@ -56,15 +57,15 @@ function Reset(props) {
 
   return (
     <>
-      <button onClick={() => setCount(0)}>Reset</button>
+      <button className='btnReset' onClick={() => setCount(0)}>↻</button>
     </>
   )
 }
 
 function SetInput(props) {
   const { setCount } = props
-  const [ input, setInput ] = useState('')
-  const [ error, setError ] = useState(false)
+  const [input, setInput] = useState('')
+  const [error, setError] = useState(false)
 
   const Action = () => {
     if (!isNaN(input)) {
@@ -75,28 +76,19 @@ function SetInput(props) {
     }
   }
   return (
-    <p>
-      <input type="text" onChange={e => setInput(e.target.value)}/>
-      <button onClick={() => Action()}>Set</button>
+    <>
+      <div className="input-container">
+        <input className='input-box' type="text" onChange={e => setInput(e.target.value)} />
+        <button className='set-input' onClick={() => Action()}>→</button>
+      </div>
       {error && <Error />}
-    </p>
+    </>
   )
 }
 
-// register form 
-// (first name (only alphabetical), last name (only alphabetical), double-time password 
-// d.o.b (input + calendar, no longer than today, yyyy/mm/dd), address, email (correct format), phone number) 
-// (all required (except for phone number), red asterisk of label, red error of empty, wrong format)
-// phone number no longer than 12 characters, only number
-// password field contains show password toggle
-// submit button (disabled if wrong condition), clear button
-
-//* re-usable field component
-
-
 function Error() {
   return (
-    <div style={{ color: 'red' }}>Not a number!</div>
+    <div className='errorLog'>Not a number!</div>
   )
 }
 
