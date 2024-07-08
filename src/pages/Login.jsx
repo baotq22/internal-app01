@@ -5,12 +5,12 @@ import eyeOpen from "../assets/svg/eye-svgrepo-com.svg"
 import eyeClose from "../assets/svg/eye-slash-svgrepo-com.svg"
 import ReuseableGroup from '../components/reuseableComponents/ReuseableGroup';
 import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckWelcome } from '../checkWelcome';
 import useStore from "../store/index";
 import { token } from '../main';
-
 
 function Login() {
     CheckWelcome();
@@ -22,6 +22,8 @@ function Login() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDisabledClear, setIsDisabledClear] = useState(false)
     const [isShowPassword, setIsShowPassword] = useState(false)
+
+    const navigate = useNavigate();
 
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 

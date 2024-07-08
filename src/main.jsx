@@ -27,7 +27,7 @@ function Main() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index path='/login' element={<Login />} />
-            <Route index path='/welcome' element={<ProtectedRoute element={<App/>} />} />
+            <Route path='/welcome' element={<ProtectedRoute element={<App/>} />} />
             <Route path='/register' element={<Register />} />
           </Route>
         </Routes>
