@@ -1,0 +1,104 @@
+$color_1: #fff;
+$color_2: #6e707e;
+$color_3: #000;
+$background-color_1: #37eb43;
+$background-color_2: #cc2323;
+$background-color_3: #fff;
+
+.containerForAppPage {
+    align-items: center;
+    padding: 2em;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    margin-top: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+
+    .display {
+        display: flex;
+        font-size: 40px;
+        margin: 0 20px;
+    }
+
+    .btnContainer {
+        display: flex;
+        align-items: center;
+
+        .btnAction {
+            font-weight: 400;
+            font-size: 40px;
+            height: 50px;
+            color: $color_1;
+            text-align: center;
+            border-radius: 10rem;
+            width: 50px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .btnActionUp {
+            background-color: $background-color_1;
+        }
+
+        .btnActionDown {
+            background-color: $background-color_2;
+        }
+
+    }
+
+    .input-container {
+        display: flex;
+        margin: 20px 20px 0 20px;
+
+        .input-box {
+            margin-right: 20px;
+            height: calc(1.5em + 0.75rem + 2px);
+            padding: 1.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: $color_2;
+            background-color: $background-color_3;
+            background-clip: padding-box;
+            border: 1px solid #d1d3e2;
+            border-radius: 10rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .set-input {
+            font-weight: 400;
+            font-size: 40px;
+            height: 50px;
+            color: $color_3;
+            text-align: center;
+            border-radius: 10rem;
+            width: 50px;
+            border: 0;
+            cursor: pointer;
+        }
+
+    }
+
+    .errorLog {
+        color: red;
+        font-size: 20px;
+        margin: 10px
+    }
+
+    .btnReset {
+        font-weight: 400;
+        font-size: 40px;
+        height: 50px;
+        color: $color_3;
+        text-align: center;
+        border-radius: 10rem;
+        width: 50px;
+        border: 0;
+        cursor: pointer;
+    }
+}
