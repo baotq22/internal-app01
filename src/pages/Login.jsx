@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckWelcome } from '../checkWelcome';
 import useStore from "../store/index";
-import { token } from '../main';
 
 function Login() {
     CheckWelcome();
@@ -56,6 +55,7 @@ function Login() {
 
     const errors = {}
     const btnSubmit = (event) => {
+        const token = import.meta.env.REACT_APP_LOGIN_TOKEN;
         event.preventDefault();
         if (password === '') {
             errors.password = 'This field is required'
