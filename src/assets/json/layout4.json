@@ -1,10 +1,34 @@
 [
-    {"src": "src/assets/img/emoji-card/HungryFaceEmoji.png"},
-    {"src": "src/assets/img/emoji-card/SlightlySmilingFaceEmoji.png"},
-    {"src": "src/assets/img/emoji-card/SmilingEmojiwithEyesOpened.png"},
-    {"src": "src/assets/img/emoji-card/SmilingEmojiwithSmilingEyes.png"},
-    {"src": "src/assets/img/emoji-card/SmilingFaceEmoji.png"},
-    {"src": "src/assets/img/emoji-card/SmilingFaceEmojiwithBlushedCheeks.png"},
-    {"src": "src/assets/img/emoji-card/SmilingFacewithTightlyClosedeyes.png"},
-    {"src": "src/assets/img/emoji-card/SmilingwithSweatEmoji.png"}
+    {
+        "src": "src/assets/img/emoji-card/HungryFaceEmoji.png",
+        "name": "HungryFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SlightlySmilingFaceEmoji.png",
+        "name": "SlightlySmilingFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingEmojiwithEyesOpened.png",
+        "name": "SmilingEmojiwithEyesOpened"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingEmojiwithSmilingEyes.png",
+        "name": "SmilingEmojiwithSmilingEyes"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingFaceEmoji.png",
+        "name": "SmilingFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingFaceEmojiwithBlushedCheeks.png",
+        "name": "SmilingFaceEmojiwithBlushedCheeks"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingFacewithTightlyClosedeyes.png",
+        "name": "SmilingFacewithTightlyClosedeyes"
+    },
+    {
+        "src": "src/assets/img/emoji-card/SmilingwithSweatEmoji.png",
+        "name": "SmilingwithSweatEmoji"
+    }
 ]

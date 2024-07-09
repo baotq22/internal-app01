@@ -9,14 +9,26 @@ $background-color_1: #5e5e5e;
     word-wrap: break-word;
     background-image: url(../../assets/img/background-game.png);
     background-clip: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: contain;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
+    margin-top: 60px;
+    min-height: 90vh;
+
+    .topPage {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+    }
 
     .containerForPageBody {
         display: flex;
-        height: 90vh;
         align-items: center;
         justify-content: center;
+        height: 90vh;
 
         .card-container-4 {
             display: grid;
