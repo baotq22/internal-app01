@@ -4,7 +4,7 @@ import getLayout4 from '../assets/json/layout4.json'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-export default function MemoryGame() {
+export default function MemoryGame({card}) {
     const [cards, setCards] = useState([])
     const [mark, setMark] = useState(0)
     const [firstSelect, setFirstSelect] = useState(null)
@@ -18,7 +18,11 @@ export default function MemoryGame() {
         setMark(0)
     }
 
-    console.log(cards)
+    // console.log(cards)
+
+    const selectTwoCards = (card) => {
+        console.log(card)
+    }
     return (
         <>
             <div className="containerForPageGame">
@@ -26,7 +30,12 @@ export default function MemoryGame() {
                     <button onClick={shuffleCard}>New</button>
                     <div className="card-container-4">
                         {cards.map((card) => (
-                            <Card key={card.id} card={card.src} />
+                            <Card 
+                                key={card.id} 
+                                images={card.src}
+                                cards={card}
+                                selectTwoCards={selectTwoCards}
+                            />
                         ))}
                     </div>
                 </div>

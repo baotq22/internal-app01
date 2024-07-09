@@ -8,7 +8,7 @@ export function CheckWelcome() {
         const tokenLocalStorage = localStorage.getItem('token');
         
         if (tokenLocalStorage) {
-            navigate('/welcome')
+            navigate('/memory-game')
         }
     }, []);
 }
