@@ -1,5 +1,19 @@
 $background-color_1: #5e5e5e;
 
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
 .containerForPageGame {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
     position: relative;
@@ -16,6 +30,68 @@ $background-color_1: #5e5e5e;
     border-radius: 0.35rem;
     margin-top: 60px;
     min-height: 90vh;
+
+    .newGame {
+        display: flex;
+        flex-direction: column;
+        .btn {
+            width: 600px;
+            font-size: 20px;
+            height: 60px;
+            border: none;
+            outline: none;
+            background: #c38b8b;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            margin: 16px;
+
+            &::before {
+                position: absolute;
+                content: "";
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                left: -2px;
+                top: -2px;
+                background: linear-gradient(124deg,
+                        #ff2400,
+                        #e81d1d,
+                        #e8b71d,
+                        #e3e81d,
+                        #1de840,
+                        #1ddde8,
+                        #2b1de8,
+                        #dd00f3,
+                        #dd00f3);
+                background-size: 400%;
+                z-index: -1;
+                filter: blur(5px);
+                animation: move 10s linear infinite;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 10px;
+            }
+
+            &:hover::before {
+                opacity: 1;
+            }
+
+            &::after {
+                z-index: -1;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgb(238, 174, 202);
+                background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+            }
+        }
+    }
 
     .topPage {
         position: absolute;
@@ -36,18 +112,21 @@ $background-color_1: #5e5e5e;
             align-items: center;
             justify-content: center;
         }
+
         .card-container-6 {
             display: grid;
             grid-template-columns: auto auto auto auto auto auto;
             align-items: center;
             justify-content: center;
         }
+
         .card-container-8 {
             display: grid;
             grid-template-columns: auto auto auto auto auto auto auto auto;
             align-items: center;
             justify-content: center;
         }
+
         .card-container-10 {
             display: grid;
             grid-template-columns: auto auto auto auto auto auto auto auto auto auto;

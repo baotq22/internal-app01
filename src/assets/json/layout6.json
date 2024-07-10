@@ -1,0 +1,74 @@
+[
+    {
+        "src": "src/assets/img/emoji-card/AnguishedFaceEmoji.png",
+        "name": "AnguishedFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/BlowKissEmoji.png",
+        "name": "BlowKissEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/ColdSweatEmoji.png",
+        "name": "ColdSweatEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/ConfusedFaceEmoji.png",
+        "name": "ConfusedFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/ExpressionlessFaceEmoji.png",
+        "name": "ExpressionlessFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/EyeRollEmoji.png",
+        "name": "EyeRollEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/FacewithoutMouthEmoji.png",
+        "name": "FacewithoutMouthEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/FearfulFaceEmoji.png",
+        "name": "FearfulFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/FlushedFaceEmoji.png",
+        "name": "FlushedFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/FrowningFacewithOpenMouthEmoji.png",
+        "name": "FrowningFacewithOpenMouthEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/GrinmacingFaceEmoji.png",
+        "name": "GrinmacingFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/GrinningEmojiwithSmilingEyes.png",
+        "name": "GrinningEmojiwithSmilingEyes"
+    },
+    {
+        "src": "src/assets/img/emoji-card/HeartEyesEmoji.png",
+        "name": "HeartEyesEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/HuggingFaceEmoji.png",
+        "name": "HuggingFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/HungryFaceEmoji.png",
+        "name": "HungryFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/HushedFaceEmoji.png",
+        "name": "HushedFaceEmoji"
+    },
+    {
+        "src": "src/assets/img/emoji-card/KissEmojiwithClosedEyes.png",
+        "name": "KissEmojiwithClosedEyes"
+    },
+    {
+        "src": "src/assets/img/emoji-card/KissingFaceEmoji.png",
+        "name": "KissingFaceEmoji"
+    }
+]
