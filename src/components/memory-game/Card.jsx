@@ -12,7 +12,7 @@ export function Card({ cards, images, selectTwoCards, disabled }) {
     }
     return (
         <div>
-            <div className="card-core" onClick={isFold ? handleCardClick : handleCardClickNoFlip }>
+            <div className="card-core" onClick={isFold ? handleCardClick : (disabled ? '' : handleCardClickNoFlip)}>
                 <div className='card-flex'>
                     <div className={isFold ? "cardFold" : "cardUnfold"}>
                         <div className={isFold ? "" : "border"}>
@@ -21,7 +21,6 @@ export function Card({ cards, images, selectTwoCards, disabled }) {
                                 height={isFold ? "210px" : "180px"}
                                 width={isFold ? "150px" : "120px"}
                                 alt={isFold ? "Front" : "back"}
-                                disabled={disabled}
                             />
                         </div>
                     </div>

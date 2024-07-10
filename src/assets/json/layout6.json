@@ -1,74 +1,92 @@
 [
     {
         "src": "src/assets/img/emoji-card/AnguishedFaceEmoji.png",
-        "name": "AnguishedFaceEmoji"
+        "name": "AnguishedFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/BlowKissEmoji.png",
-        "name": "BlowKissEmoji"
+        "name": "BlowKissEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/ColdSweatEmoji.png",
-        "name": "ColdSweatEmoji"
+        "name": "ColdSweatEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/ConfusedFaceEmoji.png",
-        "name": "ConfusedFaceEmoji"
+        "name": "ConfusedFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/ExpressionlessFaceEmoji.png",
-        "name": "ExpressionlessFaceEmoji"
+        "name": "ExpressionlessFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/EyeRollEmoji.png",
-        "name": "EyeRollEmoji"
+        "name": "EyeRollEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/FacewithoutMouthEmoji.png",
-        "name": "FacewithoutMouthEmoji"
+        "name": "FacewithoutMouthEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/FearfulFaceEmoji.png",
-        "name": "FearfulFaceEmoji"
+        "name": "FearfulFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/FlushedFaceEmoji.png",
-        "name": "FlushedFaceEmoji"
+        "name": "FlushedFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/FrowningFacewithOpenMouthEmoji.png",
-        "name": "FrowningFacewithOpenMouthEmoji"
+        "name": "FrowningFacewithOpenMouthEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/GrinmacingFaceEmoji.png",
-        "name": "GrinmacingFaceEmoji"
+        "name": "GrinmacingFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/GrinningEmojiwithSmilingEyes.png",
-        "name": "GrinningEmojiwithSmilingEyes"
+        "name": "GrinningEmojiwithSmilingEyes",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/HeartEyesEmoji.png",
-        "name": "HeartEyesEmoji"
+        "name": "HeartEyesEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/HuggingFaceEmoji.png",
-        "name": "HuggingFaceEmoji"
+        "name": "HuggingFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/HungryFaceEmoji.png",
-        "name": "HungryFaceEmoji"
+        "name": "HungryFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/HushedFaceEmoji.png",
-        "name": "HushedFaceEmoji"
+        "name": "HushedFaceEmoji",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/KissEmojiwithClosedEyes.png",
-        "name": "KissEmojiwithClosedEyes"
+        "name": "KissEmojiwithClosedEyes",
+        "matched": false
     },
     {
         "src": "src/assets/img/emoji-card/KissingFaceEmoji.png",
-        "name": "KissingFaceEmoji"
+        "name": "KissingFaceEmoji",
+        "matched": false
     }
 ]

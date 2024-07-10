@@ -1,4 +1,5 @@
 $background-color_1: #5e5e5e;
+$background-color_2: #e81d1d;
 
 @keyframes move {
     0% {
@@ -11,6 +12,20 @@ $background-color_1: #5e5e5e;
 
     100% {
         background-position: 0 0;
+    }
+}
+
+.warningDimension {
+    background-color: $background-color_2;
+    padding: 10px;
+    color: #fff;
+    width: fit-content;
+    margin: 0 auto;
+
+    .warning {
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
     }
 }
 

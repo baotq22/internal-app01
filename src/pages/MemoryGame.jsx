@@ -8,6 +8,25 @@ import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import backButton from '../assets/img/thumb_back.png'
 import NewGame from '../components/memory-game/NewGame'
+import Warning from '../assets/svg/warning.svg'
+
+function Dimensions() {
+    const [heightScreen, setHeightScreen] = useState({ height: window.innerHeight })
+
+
+    useEffect(() => {
+        const handleHeight = () => {
+            setHeightScreen({
+                height: window.innerHeight
+            })
+        }
+
+        window.addEventListener('resize', handleHeight)
+        return () => window.removeEventListener('resize', handleHeight)
+    }, [])
+
+    return heightScreen
+}
 
 export default function MemoryGame() {
     const [play, setPlay] = useState(false)
@@ -16,6 +35,7 @@ export default function MemoryGame() {
     const [mark, setMark] = useState(0)
     const [firstSelect, setFirstSelect] = useState(null)
     const [secondSelect, setSecondSelect] = useState(null)
+    const { height } = Dimensions();
 
     // back to main menu
     const backToMain = () => {
@@ -67,7 +87,6 @@ export default function MemoryGame() {
 
     // select 2 cards
     const selectTwoCards = (card) => {
-        console.log(card)
         firstSelect ? setSecondSelect(card) : setFirstSelect(card)
     }
 
@@ -76,6 +95,15 @@ export default function MemoryGame() {
         if (firstSelect && secondSelect) {
             if (firstSelect.name === secondSelect.name) {
                 console.log("same")
+                setCards(prevCards => {
+                    return prevCards.map(card => {
+                        if (card.name === firstSelect.name) {
+                            return {...card, matched: true}
+                        } else {
+                            return card
+                        }
+                    })
+                })
                 ReFlip()
             } else {
                 console.log("diff")
@@ -84,6 +112,8 @@ export default function MemoryGame() {
         }
     }, [firstSelect, secondSelect])
 
+    console.log(cards)
+
     // reset after match
     const ReFlip = () => {
         setFirstSelect(null)
@@ -91,6 +121,12 @@ export default function MemoryGame() {
     }
     return (
         <>
+            {height < 1290 &&
+                <div className="warningDimension">
+                    <img src={Warning} alt="" className='warning'/>
+                    <span>On 10x10 Layout, you should resize your browser window or zoom out browser page to get better experience</span>
+                </div>
+            }
             <div className="containerForPageGame">
                 <div className="containerForPageBody">
                     {!play &&
@@ -112,7 +148,7 @@ export default function MemoryGame() {
                                         images={card.src}
                                         cards={card}
                                         selectTwoCards={selectTwoCards}
-                                        disabled={firstSelect === secondSelect}
+                                        disabled={card.matched == true}
                                     />
                                 ))}
                             </div>
@@ -130,7 +166,7 @@ export default function MemoryGame() {
                                         images={card.src}
                                         cards={card}
                                         selectTwoCards={selectTwoCards}
-                                        disabled={firstSelect === secondSelect}
+                                        disabled={card.matched == true}
                                     />
                                 ))}
                             </div>
@@ -148,7 +184,7 @@ export default function MemoryGame() {
                                         images={card.src}
                                         cards={card}
                                         selectTwoCards={selectTwoCards}
-                                        disabled={firstSelect === secondSelect}
+                                        disabled={card.matched == true}
                                     />
                                 ))}
                             </div>
@@ -166,7 +202,7 @@ export default function MemoryGame() {
                                         images={card.src}
                                         cards={card}
                                         selectTwoCards={selectTwoCards}
-                                        disabled={firstSelect === secondSelect}
+                                        disabled={card.matched == true}
                                     />
                                 ))}
                             </div>
