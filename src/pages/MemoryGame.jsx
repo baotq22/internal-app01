@@ -98,7 +98,8 @@ export default function MemoryGame() {
                 setCards(prevCards => {
                     return prevCards.map(card => {
                         if (card.name === firstSelect.name) {
-                            return {...card, matched: true}
+                            setMark(prevMarks => prevMarks + 0.5)
+                            return { ...card, matched: true }
                         } else {
                             return card
                         }
@@ -123,7 +124,7 @@ export default function MemoryGame() {
         <>
             {height < 1290 &&
                 <div className="warningDimension">
-                    <img src={Warning} alt="" className='warning'/>
+                    <img src={Warning} alt="" className='warning' />
                     <span>On 10x10 Layout, you should resize your browser window or zoom out browser page to get better experience</span>
                 </div>
             }
@@ -136,11 +137,12 @@ export default function MemoryGame() {
                             onClick8={shuffleCard8}
                             onClick10={shuffleCard10}
                         />}
+                    <div className='topPage'>
+                        <img className='backBtn' src={backButton} width="50px" height="50px" onClick={backToMain} />
+                        <div className='mark'>Score: {mark}</div>
+                    </div>
                     {play && layout == 4 &&
                         <>
-                            <div className='topPage'>
-                                <img src={backButton} width="50px" height="50px" onClick={backToMain} />
-                            </div>
                             <div className="card-container-4">
                                 {cards.map((card) => (
                                     <Card
@@ -156,9 +158,6 @@ export default function MemoryGame() {
                     }
                     {play && layout == 6 &&
                         <>
-                            <div className='topPage'>
-                                <img src={backButton} width="50px" height="50px" onClick={backToMain} />
-                            </div>
                             <div className="card-container-6">
                                 {cards.map((card) => (
                                     <Card
@@ -174,9 +173,6 @@ export default function MemoryGame() {
                     }
                     {play && layout == 8 &&
                         <>
-                            <div className='topPage'>
-                                <img src={backButton} width="50px" height="50px" onClick={backToMain} />
-                            </div>
                             <div className="card-container-8">
                                 {cards.map((card) => (
                                     <Card
@@ -192,9 +188,6 @@ export default function MemoryGame() {
                     }
                     {play && layout == 10 &&
                         <>
-                            <div className='topPage'>
-                                <img src={backButton} width="50px" height="50px" onClick={backToMain} />
-                            </div>
                             <div className="card-container-10">
                                 {cards.map((card) => (
                                     <Card
