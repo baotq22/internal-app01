@@ -49,6 +49,7 @@ $background-color_2: #e81d1d;
     .newGame {
         display: flex;
         flex-direction: column;
+
         .btn {
             width: 600px;
             font-size: 20px;
@@ -109,11 +110,24 @@ $background-color_2: #e81d1d;
     }
 
     .topPage {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+        display: flex;
+        flex-direction: row;
         cursor: pointer;
+
+        .backBtn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .mark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
     }
+
 
     .containerForPageBody {
         display: flex;
