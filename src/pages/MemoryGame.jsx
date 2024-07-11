@@ -9,10 +9,11 @@ import { v4 as uuidv4 } from 'uuid'
 import backButton from '../assets/img/thumb_back.png'
 import NewGame from '../components/memory-game/NewGame'
 import Warning from '../assets/svg/warning.svg'
+import Success from '../assets/audio/success.mp3'
+import Failed from '../assets/audio/failed.mp3'
 
 function Dimensions() {
     const [heightScreen, setHeightScreen] = useState({ height: window.innerHeight })
-
 
     useEffect(() => {
         const handleHeight = () => {
@@ -36,6 +37,9 @@ export default function MemoryGame() {
     const [firstSelect, setFirstSelect] = useState(null)
     const [secondSelect, setSecondSelect] = useState(null)
     const { height } = Dimensions();
+
+    const successPlay = new Audio(Success)
+    const failedPlay = new Audio(Failed)
 
     // back to main menu
     const backToMain = () => {
@@ -99,8 +103,10 @@ export default function MemoryGame() {
                     return prevCards.map(card => {
                         if (card.name === firstSelect.name) {
                             setMark(prevMarks => prevMarks + 0.5)
+                            successPlay.play()
                             return { ...card, matched: true }
-                        } else {
+                        } else if (card.name !== firstSelect.name) {
+                            failedPlay.play()
                             return card
                         }
                     })
