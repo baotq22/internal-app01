@@ -105,8 +105,7 @@ export default function MemoryGame() {
                             setMark(prevMarks => prevMarks + 0.5)
                             successPlay.play()
                             return { ...card, matched: true }
-                        } else if (card.name !== firstSelect.name) {
-                            failedPlay.play()
+                        } else {
                             return card
                         }
                     })
@@ -114,6 +113,7 @@ export default function MemoryGame() {
                 ReFlip()
             } else {
                 console.log("diff")
+                failedPlay.play()
                 ReFlip()
             }
         }
