@@ -82,7 +82,7 @@ export default function MemoryGame() {
         timerByLayout(4)
         const shuffleAction = [...getLayout4, ...getLayout4]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -92,7 +92,7 @@ export default function MemoryGame() {
         timerByLayout(6)
         const shuffleAction = [...getLayout6, ...getLayout6]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -102,7 +102,7 @@ export default function MemoryGame() {
         timerByLayout(8)
         const shuffleAction = [...getLayout8, ...getLayout8]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -112,14 +112,18 @@ export default function MemoryGame() {
         timerByLayout(10)
         const shuffleAction = [...getLayout10, ...getLayout10]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
 
     // select 2 cards
     const selectTwoCards = (card) => {
-        firstSelect ? setSecondSelect(card) : setFirstSelect(card)
+        if (!firstSelect) {
+            setFirstSelect(card)
+        } else if (firstSelect.id !== card.id) {
+            setSecondSelect(card)
+        }
     }
 
     // compare card
@@ -140,12 +144,12 @@ export default function MemoryGame() {
                 ReFlip()
             } else {
                 failedPlay.play()
-                ReFlip()
+                setTimeout(() => {
+                    ReFlip()
+                }, 500)
             }
         }
     }, [firstSelect, secondSelect])
-
-    console.log(cards)
 
     // reset after match
     const ReFlip = () => {
@@ -159,7 +163,7 @@ export default function MemoryGame() {
                 setTime(prevTime => prevTime - 1);
             }, 1000)
             return () => clearInterval(timer)
-        } else if (time === 0 & play) {
+        } else if (time === 0 && play) {
             setGameOver(true);
         }
     }, [time, play])
@@ -207,7 +211,8 @@ export default function MemoryGame() {
                                             images={card.src}
                                             cards={card}
                                             selectTwoCards={selectTwoCards}
-                                            disabled={card.matched == true}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
                                         />
                                     ))}
                                 </div>
@@ -222,7 +227,8 @@ export default function MemoryGame() {
                                             images={card.src}
                                             cards={card}
                                             selectTwoCards={selectTwoCards}
-                                            disabled={card.matched == true}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
                                         />
                                     ))}
                                 </div>
@@ -237,7 +243,8 @@ export default function MemoryGame() {
                                             images={card.src}
                                             cards={card}
                                             selectTwoCards={selectTwoCards}
-                                            disabled={card.matched == true}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
                                         />
                                     ))}
                                 </div>
@@ -252,7 +259,8 @@ export default function MemoryGame() {
                                             images={card.src}
                                             cards={card}
                                             selectTwoCards={selectTwoCards}
-                                            disabled={card.matched == true}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
                                         />
                                     ))}
                                 </div>
