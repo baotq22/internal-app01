@@ -24,17 +24,18 @@ function ChildFnc(props) {
 function ParentFnc() {
   const [count, setCount] = useState(0)
   CheckLogin()
-  return (
+  return (<>
+      <GameOver />
     <div className="containerForAppPage">
       <div className="btnContainer">
         <DownFnc setCount={setCount} />
         <ChildFnc count1={count} />
         <UpFnc setCount={setCount} />
       </div>
-      <GameOver />
       <SetInput setCount={setCount} />
       <Reset setCount={setCount} />
     </div>
+  </>
   )
 }
 
