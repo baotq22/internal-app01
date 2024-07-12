@@ -5,7 +5,6 @@ import Plus from '../assets/svg/plus-svgrepo-com.svg'
 import Minus from '../assets/svg/minus-svgrepo-com.svg'
 import Go from '../assets/svg/arrow-narrow-right-svgrepo-com.svg'
 import ResetCount from '../assets/svg/refresh-ccw-alt-1-svgrepo-com.svg'
-import GameOver from '../components/memory-game/GameOver'
 
 function ChildFnc(props) {
   const { count1 } = props

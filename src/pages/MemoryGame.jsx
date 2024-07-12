@@ -11,7 +11,11 @@ import NewGame from '../components/memory-game/NewGame'
 import Warning from '../assets/svg/warning.svg'
 import Success from '../assets/audio/success.mp3'
 import Failed from '../assets/audio/failed.mp3'
-import GameOver from '../components/memory-game/GameOver'
+import GameOver from '../assets/audio/gameover.mp3'
+import Victory from '../assets/audio/victory.mp3'
+import GameOverLabel from '../assets/img/gameover.png'
+import VictoryLabel from '../assets/img/victory.png'
+import Modal from '../components/memory-game/Modal'
 
 function Dimensions() {
     const [heightScreen, setHeightScreen] = useState({ height: window.innerHeight })
@@ -39,10 +43,13 @@ export default function MemoryGame() {
     const [secondSelect, setSecondSelect] = useState(null)
     const [time, setTime] = useState(0)
     const [gameOver, setGameOver] = useState(false)
+    const [victory, setVictory] = useState(false)
     const { height } = Dimensions();
 
     const successPlay = new Audio(Success)
     const failedPlay = new Audio(Failed)
+    const gameOverPlay = new Audio(GameOver)
+    const victoryPlay = new Audio(Victory)
 
     // back to main menu
     const backToMain = () => {
@@ -52,6 +59,7 @@ export default function MemoryGame() {
         setFirstSelect(null)
         setSecondSelect(null)
         setGameOver(false)
+        setVictory(false)
     }
 
     const timerByLayout = (layout) => {
@@ -146,7 +154,7 @@ export default function MemoryGame() {
                 failedPlay.play()
                 setTimeout(() => {
                     ReFlip()
-                }, 500)
+                }, 1500)
             }
         }
     }, [firstSelect, secondSelect])
@@ -164,7 +172,8 @@ export default function MemoryGame() {
             }, 1000)
             return () => clearInterval(timer)
         } else if (time === 0 && play) {
-            setGameOver(true);
+            gameOverPlay.play()
+            setGameOver(true)
         }
     }, [time, play])
 
@@ -174,6 +183,14 @@ export default function MemoryGame() {
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
+    useEffect(() => {
+        const allIsTrueMatched = cards.every(card => card && card.matched)
+        if (cards.length && allIsTrueMatched) {
+            victoryPlay.play()
+            setVictory(true)
+        }
+    }, [cards])
+
     return (
         <>
             {height < 1290 &&
@@ -182,9 +199,17 @@ export default function MemoryGame() {
                     <span>On 10x10 Layout, you should resize your browser window or zoom out browser page to get better experience</span>
                 </div>
             }
-            <GameOver
-                isGameOver={{ display: gameOver ? 'flex' : '' }}
+            <Modal
+                isModal={{ display: gameOver ? 'flex' : '' }}
                 back={backToMain}
+                label={GameOverLabel}
+                content="Times Up!"
+            />
+            <Modal 
+                isModal={{ display: victory ? 'flex' : '' }}
+                back={backToMain}
+                label={VictoryLabel}
+                content="Victory!"
             />
             <div className="containerForPageGame">
                 <div className="containerForPageBody">
