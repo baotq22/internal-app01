@@ -51,6 +51,7 @@ export default function MemoryGame() {
         setTime(0)
         setFirstSelect(null)
         setSecondSelect(null)
+        setGameOver(false)
     }
 
     const timerByLayout = (layout) => {
@@ -79,41 +80,41 @@ export default function MemoryGame() {
         setPlay(true)
         setLayout(4)
         timerByLayout(4)
-        const shuffleAciton = [...getLayout4, ...getLayout4]
+        const shuffleAction = [...getLayout4, ...getLayout4]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
 
-        setCards(shuffleAciton)
+        setCards(shuffleAction)
     }
     const shuffleCard6 = () => {
         setPlay(true)
         setLayout(6)
         timerByLayout(6)
-        const shuffleAciton = [...getLayout6, ...getLayout6]
+        const shuffleAction = [...getLayout6, ...getLayout6]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
 
-        setCards(shuffleAciton)
+        setCards(shuffleAction)
     }
     const shuffleCard8 = () => {
         setPlay(true)
         setLayout(8)
         timerByLayout(8)
-        const shuffleAciton = [...getLayout8, ...getLayout8]
+        const shuffleAction = [...getLayout8, ...getLayout8]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
 
-        setCards(shuffleAciton)
+        setCards(shuffleAction)
     }
     const shuffleCard10 = () => {
         setPlay(true)
         setLayout(10)
         timerByLayout(10)
-        const shuffleAciton = [...getLayout10, ...getLayout10]
+        const shuffleAction = [...getLayout10, ...getLayout10]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
 
-        setCards(shuffleAciton)
+        setCards(shuffleAction)
     }
 
     // select 2 cards
@@ -159,7 +160,7 @@ export default function MemoryGame() {
             }, 1000)
             return () => clearInterval(timer)
         } else if (time === 0 & play) {
-            backToMain();
+            setGameOver(true);
         }
     }, [time, play])
 
@@ -177,6 +178,10 @@ export default function MemoryGame() {
                     <span>On 10x10 Layout, you should resize your browser window or zoom out browser page to get better experience</span>
                 </div>
             }
+                <GameOver 
+                    isGameOver={{ display: gameOver ? 'flex' : ''}}
+                    back={backToMain}
+                />
             <div className="containerForPageGame">
                 <div className="containerForPageBody">
                     {!play &&
