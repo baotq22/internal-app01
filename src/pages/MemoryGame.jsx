@@ -116,32 +116,9 @@ export default function MemoryGame() {
         setCards(shuffleAciton)
     }
 
-    // console.log(cards)
-
     // select 2 cards
     const selectTwoCards = (card) => {
         firstSelect ? setSecondSelect(card) : setFirstSelect(card)
-    }
-
-    const TimerByLayout = (layout) => {
-        let timer
-        switch (layout) {
-            case 4:
-                timer = 3 * 60
-                break;
-            case 6:
-                timer = 7 * 60
-                break;
-            case 8:
-                timer = 12 * 60
-                break;
-            case 10:
-                timer = 19 * 60
-                break;
-            default:
-                timer = 0
-        }
-        setTime(timer)
     }
 
     // compare card

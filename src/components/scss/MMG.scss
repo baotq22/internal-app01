@@ -15,9 +15,9 @@ $background-color_2: #e81d1d;
     }
 }
 
-.modal {
-    height: 200px;
-    width: 300px;
+.modal-game {
+    height: 400px;
+    width: 600px;
     background-color: rgba(255, 255, 255, 0.4);
     top: 0;
     left: 0;
@@ -26,6 +26,13 @@ $background-color_2: #e81d1d;
     margin: auto;
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 20px;
+    position: absolute;
+
+    img {
+        height: 100px;
+        width: 150px;
+
+    }
 }
 
 .warningDimension {
