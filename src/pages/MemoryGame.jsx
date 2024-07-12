@@ -213,6 +213,7 @@ export default function MemoryGame() {
                                             selectTwoCards={selectTwoCards}
                                             disabled={card.matched}
                                             flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
                                         />
                                     ))}
                                 </div>
@@ -229,6 +230,7 @@ export default function MemoryGame() {
                                             selectTwoCards={selectTwoCards}
                                             disabled={card.matched}
                                             flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
                                         />
                                     ))}
                                 </div>
@@ -245,6 +247,7 @@ export default function MemoryGame() {
                                             selectTwoCards={selectTwoCards}
                                             disabled={card.matched}
                                             flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
                                         />
                                     ))}
                                 </div>
@@ -261,6 +264,7 @@ export default function MemoryGame() {
                                             selectTwoCards={selectTwoCards}
                                             disabled={card.matched}
                                             flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
                                         />
                                     ))}
                                 </div>

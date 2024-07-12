@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function Card({ cards, images, selectTwoCards, disabled, flipped }) {
+export function Card({ cards, images, selectTwoCards, disabled, flipped, isFlipped2Cards }) {
     const [isFold, setIsFold] = useState(true)
     const defaultBack = 'src/assets/img/mystery-box.png'
     useEffect(() => {
@@ -14,9 +14,9 @@ export function Card({ cards, images, selectTwoCards, disabled, flipped }) {
     }
     return (
         <div>
-            <div className="card-core" onClick={handleCardClick}>
+            <div className="card-core" onClick={!isFlipped2Cards ? handleCardClick : ''}>
                 <div className='card-flex'>
-                    <div className={isFold ? "cardFold" : "cardUnfold"}>
+                    <div className={isFold && !isFlipped2Cards ? "cardFold" : "cardUnfold"}>
                         <div className={isFold ? "" : "border"}>
                             <img
                                 src={isFold ? defaultBack : images}
