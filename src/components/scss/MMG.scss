@@ -111,6 +111,13 @@ $background-color_2: #e81d1d;
     .newGame {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .topPage {
@@ -141,37 +148,61 @@ $background-color_2: #e81d1d;
 
 
     .containerForPageBody {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: 90vh;
 
-        .card-container-4 {
-            display: grid;
-            grid-template-columns: auto auto auto auto;
+        .card-element {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
 
-        .card-container-6 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
-        }
+            .card-container-4 {
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 25vh;
+                bottom: 25vh;
+            }
 
-        .card-container-8 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
-        }
+            .card-container-6 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
 
-        .card-container-10 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
+            .card-container-8 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
+
+            .card-container-10 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
         }
     }
 }
