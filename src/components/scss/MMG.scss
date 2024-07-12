@@ -15,6 +15,19 @@ $background-color_2: #e81d1d;
     }
 }
 
+.modal {
+    height: 200px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.4);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+}
+
 .warningDimension {
     background-color: $background-color_2;
     padding: 10px;
@@ -112,18 +125,25 @@ $background-color_2: #e81d1d;
     .topPage {
         display: flex;
         flex-direction: row;
-        cursor: pointer;
 
         .backBtn {
             position: absolute;
             top: 10px;
             left: 10px;
+            cursor: pointer;
         }
 
         .mark {
             position: absolute;
             top: 10px;
             right: 10px;
+            font-size: 30px;
+        }
+
+        .timer {
+            position: absolute;
+            top: 16px;
+            right: 150px;
             font-size: 30px;
         }
     }

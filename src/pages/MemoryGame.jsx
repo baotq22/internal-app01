@@ -11,6 +11,7 @@ import NewGame from '../components/memory-game/NewGame'
 import Warning from '../assets/svg/warning.svg'
 import Success from '../assets/audio/success.mp3'
 import Failed from '../assets/audio/failed.mp3'
+import GameOver from '../components/memory-game/GameOver'
 
 function Dimensions() {
     const [heightScreen, setHeightScreen] = useState({ height: window.innerHeight })
@@ -36,6 +37,8 @@ export default function MemoryGame() {
     const [mark, setMark] = useState(0)
     const [firstSelect, setFirstSelect] = useState(null)
     const [secondSelect, setSecondSelect] = useState(null)
+    const [time, setTime] = useState(0)
+    const [gameOver, setGameOver] = useState(false)
     const { height } = Dimensions();
 
     const successPlay = new Audio(Success)
@@ -45,14 +48,37 @@ export default function MemoryGame() {
     const backToMain = () => {
         setPlay(false)
         setMark(0)
+        setTime(0)
         setFirstSelect(null)
         setSecondSelect(null)
+    }
+
+    const timerByLayout = (layout) => {
+        let timer
+        switch (layout) {
+            case 4:
+                timer = 3 * 60
+                break;
+            case 6:
+                timer = 7 * 60
+                break;
+            case 8:
+                timer = 12 * 60
+                break;
+            case 10:
+                timer = 19 * 60
+                break;
+            default:
+                timer = 0
+        }
+        setTime(timer)
     }
 
     // shuffle card
     const shuffleCard4 = () => {
         setPlay(true)
         setLayout(4)
+        timerByLayout(4)
         const shuffleAciton = [...getLayout4, ...getLayout4]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
@@ -62,6 +88,7 @@ export default function MemoryGame() {
     const shuffleCard6 = () => {
         setPlay(true)
         setLayout(6)
+        timerByLayout(6)
         const shuffleAciton = [...getLayout6, ...getLayout6]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
@@ -71,6 +98,7 @@ export default function MemoryGame() {
     const shuffleCard8 = () => {
         setPlay(true)
         setLayout(8)
+        timerByLayout(8)
         const shuffleAciton = [...getLayout8, ...getLayout8]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
@@ -80,6 +108,7 @@ export default function MemoryGame() {
     const shuffleCard10 = () => {
         setPlay(true)
         setLayout(10)
+        timerByLayout(10)
         const shuffleAciton = [...getLayout10, ...getLayout10]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({ ...card, id: uuidv4() }))
@@ -94,11 +123,31 @@ export default function MemoryGame() {
         firstSelect ? setSecondSelect(card) : setFirstSelect(card)
     }
 
+    const TimerByLayout = (layout) => {
+        let timer
+        switch (layout) {
+            case 4:
+                timer = 3 * 60
+                break;
+            case 6:
+                timer = 7 * 60
+                break;
+            case 8:
+                timer = 12 * 60
+                break;
+            case 10:
+                timer = 19 * 60
+                break;
+            default:
+                timer = 0
+        }
+        setTime(timer)
+    }
+
     // compare card
     useEffect(() => {
         if (firstSelect && secondSelect) {
             if (firstSelect.name === secondSelect.name) {
-                console.log("same")
                 setCards(prevCards => {
                     return prevCards.map(card => {
                         if (card.name === firstSelect.name) {
@@ -112,7 +161,6 @@ export default function MemoryGame() {
                 })
                 ReFlip()
             } else {
-                console.log("diff")
                 failedPlay.play()
                 ReFlip()
             }
@@ -126,6 +174,24 @@ export default function MemoryGame() {
         setFirstSelect(null)
         setSecondSelect(null)
     }
+
+    useEffect(() => {
+        if (time > 0 && play) {
+            const timer = setInterval(() => {
+                setTime(prevTime => prevTime - 1);
+            }, 1000)
+            return () => clearInterval(timer)
+        } else if (time === 0 & play) {
+            backToMain();
+        }
+    }, [time, play])
+
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
     return (
         <>
             {height < 1290 &&
@@ -143,10 +209,11 @@ export default function MemoryGame() {
                             onClick8={shuffleCard8}
                             onClick10={shuffleCard10}
                         />}
-                    <div className='topPage'>
+                    {play && <div className='topPage'>
                         <img className='backBtn' src={backButton} width="50px" height="50px" onClick={backToMain} />
                         <div className='mark'>Score: {mark}</div>
-                    </div>
+                        <div className='timer'>Time Left: {formatTime(time)}</div>
+                    </div>}
                     {play && layout == 4 &&
                         <>
                             <div className="card-container-4">
