@@ -82,7 +82,7 @@ export default function MemoryGame() {
         timerByLayout(4)
         const shuffleAction = [...getLayout4, ...getLayout4]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -92,7 +92,7 @@ export default function MemoryGame() {
         timerByLayout(6)
         const shuffleAction = [...getLayout6, ...getLayout6]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -102,7 +102,7 @@ export default function MemoryGame() {
         timerByLayout(8)
         const shuffleAction = [...getLayout8, ...getLayout8]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
@@ -112,14 +112,18 @@ export default function MemoryGame() {
         timerByLayout(10)
         const shuffleAction = [...getLayout10, ...getLayout10]
             .sort(() => Math.random() - 0.5)
-            .map((card) => ({ ...card, id: uuidv4() }))
+            .map((card) => ({ ...card, id: uuidv4(), matched: false }))
 
         setCards(shuffleAction)
     }
 
     // select 2 cards
     const selectTwoCards = (card) => {
-        firstSelect ? setSecondSelect(card) : setFirstSelect(card)
+        if (!firstSelect) {
+            setFirstSelect(card)
+        } else if (firstSelect.id !== card.id) {
+            setSecondSelect(card)
+        }
     }
 
     // compare card
@@ -140,12 +144,12 @@ export default function MemoryGame() {
                 ReFlip()
             } else {
                 failedPlay.play()
-                ReFlip()
+                setTimeout(() => {
+                    ReFlip()
+                }, 500)
             }
         }
     }, [firstSelect, secondSelect])
-
-    console.log(cards)
 
     // reset after match
     const ReFlip = () => {
@@ -159,7 +163,7 @@ export default function MemoryGame() {
                 setTime(prevTime => prevTime - 1);
             }, 1000)
             return () => clearInterval(timer)
-        } else if (time === 0 & play) {
+        } else if (time === 0 && play) {
             setGameOver(true);
         }
     }, [time, play])
@@ -178,10 +182,10 @@ export default function MemoryGame() {
                     <span>On 10x10 Layout, you should resize your browser window or zoom out browser page to get better experience</span>
                 </div>
             }
-                <GameOver 
-                    isGameOver={{ display: gameOver ? 'flex' : ''}}
-                    back={backToMain}
-                />
+            <GameOver
+                isGameOver={{ display: gameOver ? 'flex' : '' }}
+                back={backToMain}
+            />
             <div className="containerForPageGame">
                 <div className="containerForPageBody">
                     {!play &&
@@ -191,71 +195,82 @@ export default function MemoryGame() {
                             onClick8={shuffleCard8}
                             onClick10={shuffleCard10}
                         />}
+                    <div className="card-element">
                     {play && <div className='topPage'>
                         <img className='backBtn' src={backButton} width="50px" height="50px" onClick={backToMain} />
                         <div className='mark'>Score: {mark}</div>
                         <div className='timer'>Time Left: {formatTime(time)}</div>
                     </div>}
-                    {play && layout == 4 &&
-                        <>
-                            <div className="card-container-4">
-                                {cards.map((card) => (
-                                    <Card
-                                        key={card.id}
-                                        images={card.src}
-                                        cards={card}
-                                        selectTwoCards={selectTwoCards}
-                                        disabled={card.matched == true}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    }
-                    {play && layout == 6 &&
-                        <>
-                            <div className="card-container-6">
-                                {cards.map((card) => (
-                                    <Card
-                                        key={card.id}
-                                        images={card.src}
-                                        cards={card}
-                                        selectTwoCards={selectTwoCards}
-                                        disabled={card.matched == true}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    }
-                    {play && layout == 8 &&
-                        <>
-                            <div className="card-container-8">
-                                {cards.map((card) => (
-                                    <Card
-                                        key={card.id}
-                                        images={card.src}
-                                        cards={card}
-                                        selectTwoCards={selectTwoCards}
-                                        disabled={card.matched == true}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    }
-                    {play && layout == 10 &&
-                        <>
-                            <div className="card-container-10">
-                                {cards.map((card) => (
-                                    <Card
-                                        key={card.id}
-                                        images={card.src}
-                                        cards={card}
-                                        selectTwoCards={selectTwoCards}
-                                        disabled={card.matched == true}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    }
+                        {play && layout == 4 &&
+                            <>
+                                <div className="card-element"></div>
+                                <div className="card-container-4">
+                                    {cards.map((card) => (
+                                        <Card
+                                            key={card.id}
+                                            images={card.src}
+                                            cards={card}
+                                            selectTwoCards={selectTwoCards}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        }
+                        {play && layout == 6 &&
+                            <>
+                                <div className="card-container-6">
+                                    {cards.map((card) => (
+                                        <Card
+                                            key={card.id}
+                                            images={card.src}
+                                            cards={card}
+                                            selectTwoCards={selectTwoCards}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        }
+                        {play && layout == 8 &&
+                            <>
+                                <div className="card-container-8">
+                                    {cards.map((card) => (
+                                        <Card
+                                            key={card.id}
+                                            images={card.src}
+                                            cards={card}
+                                            selectTwoCards={selectTwoCards}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        }
+                        {play && layout == 10 &&
+                            <>
+                                <div className="card-container-10">
+                                    {cards.map((card) => (
+                                        <Card
+                                            key={card.id}
+                                            images={card.src}
+                                            cards={card}
+                                            selectTwoCards={selectTwoCards}
+                                            disabled={card.matched}
+                                            flipped={card === firstSelect || card === secondSelect || card.matched}
+                                            isFlipped2Cards={firstSelect && secondSelect}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
         </>

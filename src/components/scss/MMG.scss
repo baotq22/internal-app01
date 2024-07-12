@@ -104,13 +104,20 @@ $background-color_2: #e81d1d;
     object-fit: contain;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
-    margin-top: 60px;
+    margin-top: 50px;
     min-height: 90vh;
     z-index: 5;
 
     .newGame {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .topPage {
@@ -141,37 +148,61 @@ $background-color_2: #e81d1d;
 
 
     .containerForPageBody {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: 90vh;
 
-        .card-container-4 {
-            display: grid;
-            grid-template-columns: auto auto auto auto;
+        .card-element {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
 
-        .card-container-6 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
-        }
+            .card-container-4 {
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 25vh;
+                bottom: 25vh;
+            }
 
-        .card-container-8 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
-        }
+            .card-container-6 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
 
-        .card-container-10 {
-            display: grid;
-            grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
-            align-items: center;
-            justify-content: center;
+            .card-container-8 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
+
+            .card-container-10 {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 60px;
+                bottom: 60px;
+            }
         }
     }
 }
@@ -204,7 +235,11 @@ $background-color_2: #e81d1d;
     justify-content: center;
     align-items: center;
     margin: 8px;
-    cursor: pointer;
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
 
     .border {
         height: 80px;
@@ -277,5 +312,60 @@ $background-color_2: #e81d1d;
         left: 0;
         top: 0;
         border-radius: 10px;
+    }
+}
+
+@media (max-width: 1920px) {
+    .card-container-8,
+    .card-container-10 {
+        .cardFold {
+            height: 60px;
+            width: 60px;
+            background-color: $background-color_1;
+            object-fit: contain;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 8px;
+            cursor: pointer;
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .cardUnfold {
+            height: 60px;
+            width: 60px;
+            background-color: $background-color_1;
+            border-radius: 20px;
+            object-fit: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 8px;
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .border {
+                height: 45px;
+                width: 45px;
+                border-radius: 20px;
+                object-fit: contain;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
     }
 }
