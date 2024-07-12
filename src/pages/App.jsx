@@ -25,7 +25,6 @@ function ParentFnc() {
   const [count, setCount] = useState(0)
   CheckLogin()
   return (<>
-      <GameOver />
     <div className="containerForAppPage">
       <div className="btnContainer">
         <DownFnc setCount={setCount} />

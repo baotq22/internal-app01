@@ -15,6 +15,7 @@ $background-color_3: #308efe;
 	font-size: 1.5rem;
 	font-weight: 700;
 	font-family: $font-family_1;
+	z-index: 10;
 
 	.sidebar__button {
 		float: left;
@@ -51,11 +52,11 @@ $background-color_3: #308efe;
 		position: fixed;
 		top: 0;
 		left: 0;
+		z-index: 20;
 
 		.blurry {
 			backdrop-filter: blur(20px);
 			height: 100vh;
-			z-index: 10;
 			width: 100%;
 		}
 
