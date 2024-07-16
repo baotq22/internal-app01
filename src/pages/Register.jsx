@@ -10,6 +10,7 @@ import ReuseableDropdownlist from '../components/reuseableComponents/ReuseableDr
 import ReuseableActionButton from '../components/reuseableComponents/ReuseableActionButton'
 import ReuseableInputForPhone from '../components/reuseableComponents/ReuseableInputPhone'
 import { CheckWelcome } from '../checkWelcome'
+import ReuseableInputName from '../components/reuseableComponents/ReuseableInputName'
 
 function Registers() {
     CheckWelcome();
@@ -17,6 +18,7 @@ function Registers() {
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [userName, setUserName] = useState('')
     const [dob, setDob] = useState('')
     const [address, setAddress] = useState('')
     const [email, setEmail] = useState('')
@@ -36,6 +38,7 @@ function Registers() {
     const validateName = (name) => /^[a-zA-Z ]+$/.test(name);
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
     const validatePhone = (phoneNumber) => /^\[3578]\d{8}$/.test(phoneNumber);
+    const validateUsername = (username) => /^[a-zA-Z0-9]+$/.test(username);
 
     const validatePassword = (password) => {
         const criteria = [
@@ -56,24 +59,20 @@ function Registers() {
         const enabled =
             validateName(firstName) && firstName !== '' &&
             validateName(lastName) && lastName !== '' &&
-            password !== '' &&
-            confirmPassword !== '' &&
-            password === confirmPassword &&
-            address !== '' &&
+            password !== '' && confirmPassword !== '' &&
+            validateUsername(userName) && userName !== '' &&
+            password === confirmPassword && address !== '' &&
             validateEmail(email) && email !== '' && dob !== '' && model !== ''
         validatePassword(password) === null && gender !== '' && brand !== ''
         setIsDisabled(enabled)
 
         const enabledClear =
-            firstName !== '' ||
-            lastName !== '' ||
-            password !== '' ||
-            confirmPassword !== '' ||
-            address !== '' || model !== '' ||
-            email !== '' || dob !== '' ||
-            gender !== '' || brand !== ''
+            firstName !== '' || lastName !== '' ||
+            password !== '' || confirmPassword !== '' ||
+            userName !== '' || address !== '' || model !== '' ||
+            email !== '' || dob !== '' || gender !== '' || brand !== ''
         setIsDisabledClear(enabledClear)
-    }, [firstName, lastName, password, confirmPassword, address, email, dob, gender, brand, model])
+    }, [firstName, lastName, password, confirmPassword, userName, address, email, dob, gender, brand, model])
 
     useEffect(() => {
         setIsMatchPwd(password === confirmPassword)
@@ -105,6 +104,9 @@ function Registers() {
         } else {
             setIsMatchPwd(true)
         }
+        if (userName === '') {
+            errors.userName = 'This field is required'
+        }
         if (address === '') {
             errors.address = 'This field is required'
         }
@@ -132,6 +134,7 @@ function Registers() {
                 + "D.O.B: " + dob + "\n"
                 + "Password: " + password + "\n"
                 + "Confirm Password: " + confirmPassword + "\n"
+                + "Username: " + userName + "\n"
                 + "Address: " + address + "\n"
                 + "Phone Number: " + format + phoneNumber + "\n"
                 + "Email: " + email + "\n"
@@ -148,6 +151,7 @@ function Registers() {
         setLastName('');
         setPassword('');
         setConfirmPassword('');
+        setUserName('');
         setDob('');
         setAddress('');
         setEmail('');
@@ -213,6 +217,16 @@ function Registers() {
         }
     }
 
+    const validateUserName = (e) => {
+        const { value } = e.target
+        if (validateUsername(value) || value === '') {
+            setUserName(value)
+            setIsError(prevErrors => ({ ...prevErrors, userName: null }));
+        } else {
+            setIsError(prevErrors => ({ ...prevErrors, userName: "Not contain special characters" }))
+        }
+    }
+
     const validateTheAddress = (e) => {
         const { value } = e.target
         setAddress(value);
@@ -267,28 +281,6 @@ function Registers() {
                                     <>
                                         <ReuseableInput
                                             requiredMark="*"
-                                            label="First Name: "
-                                            type="text"
-                                            id="firstName"
-                                            classes="input-box"
-                                            value={firstName}
-                                            placeholder="First Name"
-                                            onChange={validateFirstName}
-                                            error={isError.firstName}
-                                        />
-                                        <ReuseableInput
-                                            requiredMark="*"
-                                            label="Last Name: "
-                                            type="text"
-                                            id="lastName"
-                                            classes="input-box"
-                                            value={lastName}
-                                            placeholder="Last Name"
-                                            onChange={validateLastName}
-                                            error={isError.lastName}
-                                        />
-                                        <ReuseableInput
-                                            requiredMark="*"
                                             label="Password: "
                                             type={isShowPassword ? "text" : "password"}
                                             id="pass"
@@ -305,6 +297,22 @@ function Registers() {
                                                 />
                                             }
                                         />
+                                        <ReuseableInputName
+                                            id="name"
+                                            label="Name: "
+                                            classes="input-box"
+                                            valueFN={firstName}
+                                            valueLN={lastName}
+                                            idFN="firstName"
+                                            idLN="lastName"
+                                            placeholderFN="First Name"
+                                            placeholderLN="Last Name"
+                                            onChangeFN={validateFirstName}
+                                            onChangeLN={validateLastName}
+                                            errorFN={isError.firstName}
+                                            errorLN={isError.lastName}
+                                        />
+
                                         <ReuseableInput
                                             requiredMark="*"
                                             label="Confirm Password: "
@@ -324,7 +332,17 @@ function Registers() {
                                             }
                                             errorMatch={!isMatchPwd && <div style={{ color: "red" }}>* Passwords do not match</div>}
                                         />
-
+                                        <ReuseableInput
+                                            requiredMark="*"
+                                            label="User Name: "
+                                            type="text"
+                                            id="userName"
+                                            classes="input-box"
+                                            value={userName}
+                                            placeholder="User Name"
+                                            onChange={validateUserName}
+                                            error={isError.userName}
+                                        />
                                         <ReuseableInput
                                             requiredMark="*"
                                             label="D.O.B: "
