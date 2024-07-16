@@ -279,6 +279,21 @@ function Registers() {
                             <ReuseableGroup
                                 elements={
                                     <>
+                                        <ReuseableInputName
+                                            id="name"
+                                            label="Name: "
+                                            classes="input-box"
+                                            valueFN={firstName}
+                                            valueLN={lastName}
+                                            idFN="firstName"
+                                            idLN="lastName"
+                                            placeholderFN="First Name"
+                                            placeholderLN="Last Name"
+                                            onChangeFN={validateFirstName}
+                                            onChangeLN={validateLastName}
+                                            errorFN={isError.firstName}
+                                            errorLN={isError.lastName}
+                                        />
                                         <ReuseableInput
                                             requiredMark="*"
                                             label="Password: "
@@ -297,22 +312,17 @@ function Registers() {
                                                 />
                                             }
                                         />
-                                        <ReuseableInputName
-                                            id="name"
-                                            label="Name: "
+                                        <ReuseableInput
+                                            requiredMark="*"
+                                            label="User Name: "
+                                            type="text"
+                                            id="userName"
                                             classes="input-box"
-                                            valueFN={firstName}
-                                            valueLN={lastName}
-                                            idFN="firstName"
-                                            idLN="lastName"
-                                            placeholderFN="First Name"
-                                            placeholderLN="Last Name"
-                                            onChangeFN={validateFirstName}
-                                            onChangeLN={validateLastName}
-                                            errorFN={isError.firstName}
-                                            errorLN={isError.lastName}
+                                            value={userName}
+                                            placeholder="User Name"
+                                            onChange={validateUserName}
+                                            error={isError.userName}
                                         />
-
                                         <ReuseableInput
                                             requiredMark="*"
                                             label="Confirm Password: "
@@ -332,17 +342,7 @@ function Registers() {
                                             }
                                             errorMatch={!isMatchPwd && <div style={{ color: "red" }}>* Passwords do not match</div>}
                                         />
-                                        <ReuseableInput
-                                            requiredMark="*"
-                                            label="User Name: "
-                                            type="text"
-                                            id="userName"
-                                            classes="input-box"
-                                            value={userName}
-                                            placeholder="User Name"
-                                            onChange={validateUserName}
-                                            error={isError.userName}
-                                        />
+
                                         <ReuseableInput
                                             requiredMark="*"
                                             label="D.O.B: "
