@@ -24,6 +24,7 @@ function Registers() {
     const [email, setEmail] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [gender, setGender] = useState('')
+    const [image, setImage] = useState(null)
     const [brand, setBrand] = useState('')
     const [model, setModel] = useState('')
     const [format, setFormat] = useState('+84 ')
@@ -70,9 +71,10 @@ function Registers() {
             firstName !== '' || lastName !== '' ||
             password !== '' || confirmPassword !== '' ||
             userName !== '' || address !== '' || model !== '' ||
-            email !== '' || dob !== '' || gender !== '' || brand !== ''
+            email !== '' || dob !== '' || gender !== '' || brand !== '' ||
+            image !== null
         setIsDisabledClear(enabledClear)
-    }, [firstName, lastName, password, confirmPassword, userName, address, email, dob, gender, brand, model])
+    }, [firstName, lastName, password, confirmPassword, userName, address, email, dob, gender, brand, model, image])
 
     useEffect(() => {
         setIsMatchPwd(password === confirmPassword)
@@ -159,6 +161,7 @@ function Registers() {
         setGender('');
         setBrand('');
         setModel('');
+        setImage(null);
         setIsError({});
         setIsMatchPwd(true);
         setIsShowPassword(false);
@@ -265,6 +268,15 @@ function Registers() {
     const getModelsByBrand = (brandName) => {
         const brandModel = getAllFromJson.find((b) => b.name === brandName)
         return brandModel ? brandModel.model : []
+    }
+
+    const imageUploadProcess = (e) => {
+        const file = e.target.value[0]
+        if (file) {
+            setImage(file)
+        } else {
+            setImage(null)
+        }
     }
 
     return (
@@ -441,6 +453,16 @@ function Registers() {
                                     </>
                                 }
                             />
+                            <div className='mb-[16px]'>
+                                <label className='text-[#f8f9fa] font-medium' htmlFor='image'>Upload Profile Image:</label>
+                                <input
+                                    type='file'
+                                    id='image'
+                                    accept='image/*'
+                                    onChange={imageUploadProcess}
+                                    className='block w-full text-[#f8f9fa] mt-[8px]'
+                                />
+                            </div>
                             <div className="btn-container" style={{ marginTop: '30px' }}>
                                 <ReuseableActionButton
                                     type='submit'
